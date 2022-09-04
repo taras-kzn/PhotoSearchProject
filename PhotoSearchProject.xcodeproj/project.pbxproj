@@ -24,6 +24,7 @@
 		CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5028C4AFC800518BE0 /* API.swift */; };
 		CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */; };
 		CCA1DB5E28C4B56000518BE0 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5D28C4B56000518BE0 /* SearchResults.swift */; };
+		CCA1DB6028C4D82E00518BE0 /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5F28C4D82E00518BE0 /* PhotosCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CCA1DB5028C4AFC800518BE0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		CCA1DB5D28C4B56000518BE0 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		CCA1DB5F28C4D82E00518BE0 /* PhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		CCA1DB3928C49AFA00518BE0 /* PhotosCollection */ = {
 			isa = PBXGroup;
 			children = (
+				CCA1DB5F28C4D82E00518BE0 /* PhotosCell.swift */,
 				CCA1DB3F28C49C0000518BE0 /* PhotosCollectionViewController.swift */,
 				CCA1DB4028C49C0000518BE0 /* PhotosCollectionInteractor.swift */,
 				CCA1DB3B28C49C0000518BE0 /* PhotosCollectionPresenter.swift */,
@@ -242,6 +245,7 @@
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
 				CCA1DB4428C49C0000518BE0 /* PhotosCollectionRouter.swift in Sources */,
 				CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */,
+				CCA1DB6028C4D82E00518BE0 /* PhotosCell.swift in Sources */,
 				CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */,
 				CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */,
 				CCA1DB4528C49C0000518BE0 /* PhotosCollectionModels.swift in Sources */,

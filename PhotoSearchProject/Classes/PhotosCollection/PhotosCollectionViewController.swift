@@ -17,6 +17,7 @@ class PhotosCollectionViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     private var timer: Timer?
+    private var photos = [Photo]()
 
 
     var networkDataFetcher = NetworkDataFetcher(networkService: NetworkService())
@@ -66,12 +67,12 @@ extension PhotosCollectionViewController: PhotosCollectionDisplayLogic {
 //MARK: - UICollectionViewDataSource
 extension PhotosCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath)
-        cell.backgroundColor = .gray
+        let cell = 
+        let photos = photos[indexPath.item]
         return cell
     }
 }
@@ -84,14 +85,12 @@ extension PhotosCollectionViewController: UICollectionViewDelegate {
 //MARK: - UISearchBarDelegate
 extension PhotosCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        //TODO: - Здесь надо реализовать все в interactor
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            self.networkDataFetcher.fetchImage(search: searchText) { results in
-                results.map { searchResults in
-                    searchResults.results.map { photo in
-                        print("photos.urls -> \(photo.urls["small"])")
-                        print("name -> \(photo.user.name)")
-                    }
-                }
+            self.networkDataFetcher.fetchImage(search: searchText) { [weak self] results in
+                guard let photos = results else { return }
+                self?.photos = photos.results
             }
         })
     }
