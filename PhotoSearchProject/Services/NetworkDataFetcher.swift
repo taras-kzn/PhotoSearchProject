@@ -8,7 +8,8 @@
 import Foundation
 
 protocol DataFetcherProtocol {
-    func fetchImage(search: String, completion: @escaping (SearchResults?) -> Void)
+    func getImageBySearch(search: String, completion: @escaping (SearchResults?) -> Void)
+    func getImageRandom(completion: @escaping ([Photo]?) -> Void)
 }
 
 class NetworkDataFetcher: DataFetcherProtocol {
@@ -19,14 +20,26 @@ class NetworkDataFetcher: DataFetcherProtocol {
         self.networkService = networkService
     }
 
-    func fetchImage(search: String, completion: @escaping (SearchResults?) -> Void) {
-        networkService.request(search: search) { (data, error) in
+    func getImageBySearch(search: String, completion: @escaping (SearchResults?) -> Void) {
+        networkService.requestPhotoSearch(search: search) { (data, error) in
             if let error = error {
                 print("Error request data: \(error.localizedDescription)")
                 completion(nil)
             }
 
             let decode = self.decodeJSON(type: SearchResults.self, from: data)
+            completion(decode)
+        }
+    }
+
+    func getImageRandom(completion: @escaping ([Photo]?) -> Void) {
+        networkService.requestPhotoRandom { (data, error) in
+            if let error = error {
+                print("Error request data: \(error.localizedDescription)")
+                completion(nil)
+            }
+
+            let decode = self.decodeJSON(type: [Photo].self, from: data)
             completion(decode)
         }
     }

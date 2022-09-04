@@ -13,11 +13,22 @@ protocol PhotosCollectionBusinessLogic {
 class PhotosCollectionInteractor: PhotosCollectionBusinessLogic {
     
     var presenter: PhotosCollectionPresentationLogic?
-    var service: PhotosCollectionService?
+
+    private var networkDataFetcher: DataFetcherProtocol = NetworkDataFetcher(networkService: NetworkService())
     
     func makeRequest(request: PhotosCollection.Model.Request.RequestType) {
-        if service == nil {
-            service = PhotosCollectionService()
+
+        switch request {
+        case .getPhotosRandom:
+            networkDataFetcher.getImageRandom { [weak self] photos in
+                guard let photos = photos, let self = self else { return }
+                self.presenter?.presentData(response: .presentPhotosRandom(photos: photos))
+            }
+        case .getImageBySearch(search: let search):
+            networkDataFetcher.getImageBySearch(search: search) { [weak self] results in
+                guard let photos = results, let self = self else { return }
+                self.presenter?.presentData(response: .presentImageBySearch(photos: photos))
+            }
         }
     }
     

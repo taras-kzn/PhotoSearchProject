@@ -10,13 +10,18 @@ import Foundation
 struct API {
     static let scheme = "https"
     static let host = "api.unsplash.com"
-    static let path = "/search/photos"
+}
+
+struct ApiPath {
+    static let searchPhotos = "/search/photos"
+    static let photosRandom = "/photos/random"
 }
 
 struct Parameter {
     static let query = "query"
     static let page = "page"
     static let perPage = "per_page"
+    static let count = "count"
 }
 
 struct Header {

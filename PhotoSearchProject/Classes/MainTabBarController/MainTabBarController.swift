@@ -9,7 +9,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     //MARK: - properties
-    let photosVC = PhotosCollectionViewController()
+    let photosVC = ModuleBuilder.creatingPhotosCollection()
     let secondVC = ViewController()
 
     //MARK: - lifecycle

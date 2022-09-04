@@ -11,19 +11,28 @@ enum PhotosCollection {
     enum Model {
         struct Request {
             enum RequestType {
-                case some
+                case getPhotosRandom
+                case getImageBySearch(search: String)
             }
         }
         struct Response {
             enum ResponseType {
-                case some
+                case presentPhotosRandom(photos: [Photo])
+                case presentImageBySearch(photos: SearchResults)
             }
         }
         struct ViewModel {
             enum ViewModelData {
-                case some
+                case displayPhotosRandom(photosViewModel: [PhotosViewModel])
+                case displayImageBySearch(photosViewModel: [PhotosViewModel])
             }
         }
     }
-    
+}
+
+struct PhotosViewModel: photoCellViewModel{
+    var id: String
+    var width: Int
+    var height: Int
+    var photoUrlRegularSize: String
 }
