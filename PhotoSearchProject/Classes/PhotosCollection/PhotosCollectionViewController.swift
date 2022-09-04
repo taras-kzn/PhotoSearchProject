@@ -18,6 +18,9 @@ class PhotosCollectionViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var timer: Timer?
 
+
+    var networkDataFetcher = NetworkDataFetcher(networkService: NetworkService())
+
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +85,14 @@ extension PhotosCollectionViewController: UICollectionViewDelegate {
 extension PhotosCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            print(searchText)
+            self.networkDataFetcher.fetchImage(search: searchText) { results in
+                results.map { searchResults in
+                    searchResults.results.map { photo in
+                        print("photos.urls -> \(photo.urls["small"])")
+                        print("name -> \(photo.user.name)")
+                    }
+                }
+            }
         })
     }
 }

@@ -20,6 +20,10 @@
 		CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4028C49C0000518BE0 /* PhotosCollectionInteractor.swift */; };
 		CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4928C49CEB00518BE0 /* MainTabBarController.swift */; };
 		CCA1DB4C28C4A84600518BE0 /* PhotosCollectionConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4B28C4A84600518BE0 /* PhotosCollectionConfigure.swift */; };
+		CCA1DB4F28C4AE3C00518BE0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4E28C4AE3C00518BE0 /* NetworkService.swift */; };
+		CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5028C4AFC800518BE0 /* API.swift */; };
+		CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */; };
+		CCA1DB5E28C4B56000518BE0 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5D28C4B56000518BE0 /* SearchResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		CCA1DB4028C49C0000518BE0 /* PhotosCollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionInteractor.swift; sourceTree = "<group>"; };
 		CCA1DB4928C49CEB00518BE0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CCA1DB4B28C4A84600518BE0 /* PhotosCollectionConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionConfigure.swift; sourceTree = "<group>"; };
+		CCA1DB4E28C4AE3C00518BE0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CCA1DB5028C4AFC800518BE0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		CCA1DB5D28C4B56000518BE0 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +78,10 @@
 		CCA1DB1E28C48F8F00518BE0 /* PhotoSearchProject */ = {
 			isa = PBXGroup;
 			children = (
-				CCA1DB3528C496F100518BE0 /* Resources */,
 				CCA1DB3328C4955700518BE0 /* App */,
+				CCA1DB4D28C4ADDD00518BE0 /* Services */,
 				CCA1DB3428C496DD00518BE0 /* Classes */,
+				CCA1DB3528C496F100518BE0 /* Resources */,
 			);
 			path = PhotoSearchProject;
 			sourceTree = "<group>";
@@ -134,6 +143,25 @@
 				CCA1DB4928C49CEB00518BE0 /* MainTabBarController.swift */,
 			);
 			path = MainTabBarController;
+			sourceTree = "<group>";
+		};
+		CCA1DB4D28C4ADDD00518BE0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CCA1DB4E28C4AE3C00518BE0 /* NetworkService.swift */,
+				CCA1DB5028C4AFC800518BE0 /* API.swift */,
+				CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */,
+				CCA1DB5228C4B36600518BE0 /* Models */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CCA1DB5228C4B36600518BE0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CCA1DB5D28C4B56000518BE0 /* SearchResults.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +241,13 @@
 				CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */,
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
 				CCA1DB4428C49C0000518BE0 /* PhotosCollectionRouter.swift in Sources */,
+				CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */,
 				CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */,
+				CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */,
 				CCA1DB4528C49C0000518BE0 /* PhotosCollectionModels.swift in Sources */,
 				CCA1DB4328C49C0000518BE0 /* PhotosCollectionWorker.swift in Sources */,
+				CCA1DB4F28C4AE3C00518BE0 /* NetworkService.swift in Sources */,
+				CCA1DB5E28C4B56000518BE0 /* SearchResults.swift in Sources */,
 				CCA1DB4628C49C0000518BE0 /* PhotosCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
