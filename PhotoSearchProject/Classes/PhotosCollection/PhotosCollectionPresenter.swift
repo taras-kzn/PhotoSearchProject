@@ -7,14 +7,14 @@
 import UIKit
 
 protocol PhotosCollectionPresentationLogic {
-  func presentData(response: PhotosCollection.Model.Response.ResponseType)
+    func presentData(response: PhotosCollection.Model.Response.ResponseType)
 }
 
 class PhotosCollectionPresenter: PhotosCollectionPresentationLogic {
-  weak var viewController: PhotosCollectionDisplayLogic?
-
-  func presentData(response: PhotosCollection.Model.Response.ResponseType) {
-
-  }
-
+    weak var viewController: PhotosCollectionDisplayLogic?
+    
+    func presentData(response: PhotosCollection.Model.Response.ResponseType) {
+        
+    }
+    
 }

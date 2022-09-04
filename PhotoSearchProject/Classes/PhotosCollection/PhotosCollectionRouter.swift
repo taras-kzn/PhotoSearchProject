@@ -12,8 +12,8 @@ protocol PhotosCollectionRoutingLogic {
 
 class PhotosCollectionRouter: NSObject, PhotosCollectionRoutingLogic {
 
-  weak var viewController: PhotosCollectionViewController?
+    weak var viewController: PhotosCollectionViewController?
 
-  // MARK: Routing
+    // MARK: Routing
 
 }

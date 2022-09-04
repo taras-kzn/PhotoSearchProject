@@ -15,27 +15,21 @@ class PhotosCollectionViewController: UIViewController {
     var interactor: PhotosCollectionBusinessLogic?
     var router: (NSObjectProtocol & PhotosCollectionRoutingLogic)?
 
-    var collectionView: UICollectionView!
-
-    //MARK: - Setup
-    private func setup() {
-        let viewController        = self
-        let interactor            = PhotosCollectionInteractor()
-        let presenter             = PhotosCollectionPresenter()
-        let router                = PhotosCollectionRouter()
-        viewController.interactor = interactor
-        viewController.router     = router
-        interactor.presenter      = presenter
-        presenter.viewController  = viewController
-        router.viewController     = viewController
-    }
+    private var collectionView: UICollectionView!
+    private var timer: Timer?
 
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        setupCollectionView()
 
+        setup()
+        setupSearchBar()
+        setupCollectionView()
+        PhotosCollectionConfigure.shared.configure(with: self)
+    }
+
+    //MARK: - Setup
+    private func setup() {
         navigationItem.title = "Photos"
     }
 
@@ -47,6 +41,14 @@ class PhotosCollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellId")
+    }
+
+    //MARK: - setup SearchBar
+    private func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
     }
 }
 
@@ -74,4 +76,13 @@ extension PhotosCollectionViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension PhotosCollectionViewController: UICollectionViewDelegate {
 
+}
+
+//MARK: - UISearchBarDelegate
+extension PhotosCollectionViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            print(searchText)
+        })
+    }
 }

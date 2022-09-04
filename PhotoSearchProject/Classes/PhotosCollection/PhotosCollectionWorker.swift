@@ -7,5 +7,5 @@
 import UIKit
 
 class PhotosCollectionService {
-
+    
 }

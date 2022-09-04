@@ -7,18 +7,18 @@
 import UIKit
 
 protocol PhotosCollectionBusinessLogic {
-  func makeRequest(request: PhotosCollection.Model.Request.RequestType)
+    func makeRequest(request: PhotosCollection.Model.Request.RequestType)
 }
 
 class PhotosCollectionInteractor: PhotosCollectionBusinessLogic {
-
-  var presenter: PhotosCollectionPresentationLogic?
-  var service: PhotosCollectionService?
-
-  func makeRequest(request: PhotosCollection.Model.Request.RequestType) {
-    if service == nil {
-      service = PhotosCollectionService()
+    
+    var presenter: PhotosCollectionPresentationLogic?
+    var service: PhotosCollectionService?
+    
+    func makeRequest(request: PhotosCollection.Model.Request.RequestType) {
+        if service == nil {
+            service = PhotosCollectionService()
+        }
     }
-  }
-
+    
 }

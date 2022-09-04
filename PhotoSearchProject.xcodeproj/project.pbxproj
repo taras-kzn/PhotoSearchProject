@@ -19,6 +19,7 @@
 		CCA1DB4628C49C0000518BE0 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB3F28C49C0000518BE0 /* PhotosCollectionViewController.swift */; };
 		CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4028C49C0000518BE0 /* PhotosCollectionInteractor.swift */; };
 		CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4928C49CEB00518BE0 /* MainTabBarController.swift */; };
+		CCA1DB4C28C4A84600518BE0 /* PhotosCollectionConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB4B28C4A84600518BE0 /* PhotosCollectionConfigure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CCA1DB3F28C49C0000518BE0 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		CCA1DB4028C49C0000518BE0 /* PhotosCollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionInteractor.swift; sourceTree = "<group>"; };
 		CCA1DB4928C49CEB00518BE0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CCA1DB4B28C4A84600518BE0 /* PhotosCollectionConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionConfigure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				CCA1DB3E28C49C0000518BE0 /* PhotosCollectionModels.swift */,
 				CCA1DB3C28C49C0000518BE0 /* PhotosCollectionWorker.swift */,
 				CCA1DB3D28C49C0000518BE0 /* PhotosCollectionRouter.swift */,
+				CCA1DB4B28C4A84600518BE0 /* PhotosCollectionConfigure.swift */,
 			);
 			path = PhotosCollection;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				CCA1DB2428C48F8F00518BE0 /* ViewController.swift in Sources */,
 				CCA1DB2028C48F8F00518BE0 /* AppDelegate.swift in Sources */,
+				CCA1DB4C28C4A84600518BE0 /* PhotosCollectionConfigure.swift in Sources */,
 				CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */,
 				CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */,
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
