@@ -13,8 +13,7 @@ protocol PhotosCollectionBusinessLogic {
 class PhotosCollectionInteractor: PhotosCollectionBusinessLogic {
     
     var presenter: PhotosCollectionPresentationLogic?
-
-    private var networkDataFetcher: DataFetcherProtocol = NetworkDataFetcher(networkService: NetworkService())
+    var networkDataFetcher: DataFetcherProtocol!
     
     func makeRequest(request: PhotosCollection.Model.Request.RequestType) {
 

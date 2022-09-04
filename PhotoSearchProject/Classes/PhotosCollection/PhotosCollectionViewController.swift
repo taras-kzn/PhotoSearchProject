@@ -73,10 +73,14 @@ extension PhotosCollectionViewController: PhotosCollectionDisplayLogic {
         switch viewModel {
         case .displayPhotosRandom(photosViewModel: let photosViewModel):
             photos = photosViewModel
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         case .displayImageBySearch(photosViewModel: let photosViewModel):
             photos = photosViewModel
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 }
