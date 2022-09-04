@@ -8,13 +8,26 @@
 import Foundation
 
 protocol NetworkingProtocol {
-    func request(search: String, completion: @escaping (Data?, Error?) -> Void)
+    func requestPhotoSearch(search: String, completion: @escaping (Data?, Error?) -> Void)
+    func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void)
 }
 
 class NetworkService: NetworkingProtocol {
-    func request(search: String, completion: @escaping (Data?, Error?) -> Void) {
+
+    func requestPhotoSearch(search: String, completion: @escaping (Data?, Error?) -> Void) {
         let parameters = setupParameters(search: search)
-        let url = url(params: parameters)
+        let url = url(path: ApiPath.searchPhotos, params: parameters)
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = setupHeaders()
+        request.httpMethod = HTTPMethod.get.rawValue
+        let task = createDataTask(from: request, completion: completion)
+        task.resume()
+    }
+
+    func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void) {
+        var parameters = [String: String]()
+        parameters[Parameter.count] = String(20)
+        let url = url(path: ApiPath.photosRandom, params: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = setupHeaders()
         request.httpMethod = HTTPMethod.get.rawValue
@@ -30,11 +43,11 @@ class NetworkService: NetworkingProtocol {
         return parameters
     }
 
-    private func url(params: [String: String]) -> URL {
+    private func url(path: String, params: [String: String]) -> URL {
         var components = URLComponents()
         components.scheme = API.scheme
         components.host = API.host
-        components.path = API.path
+        components.path = path
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
         return components.url!
     }

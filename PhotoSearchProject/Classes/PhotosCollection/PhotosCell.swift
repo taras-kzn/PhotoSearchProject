@@ -7,23 +7,21 @@
 
 import UIKit
 
+protocol photoCellViewModel {
+    var photoUrlRegularSize: String { get }
+}
+
 class PhotosCell: UICollectionViewCell {
 
     static let reuseId = "PhotosCell"
 
-    private let photoImageView: UIImageView = {
-        let imageView = UIImageView()
+    let photoImageView: WebImageView = {
+        let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .darkGray
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
-    var photo: Photo! {
-        didSet {
-            let photoUrl = photo.urls["regular"]
-        }
-    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -36,6 +34,9 @@ class PhotosCell: UICollectionViewCell {
         setupPhotoImageView()
     }
 
+    func set(viewModel: photoCellViewModel) {
+        photoImageView.set(imageUrl: viewModel.photoUrlRegularSize)
+    }
 
     private func setupPhotoImageView() {
         addSubview(photoImageView)
