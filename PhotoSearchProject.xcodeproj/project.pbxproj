@@ -26,6 +26,13 @@
 		CCA1DB6028C4D82E00518BE0 /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB5F28C4D82E00518BE0 /* PhotosCell.swift */; };
 		CCA1DB6428C4DEC000518BE0 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB6328C4DEC000518BE0 /* WebImageView.swift */; };
 		CCA1DB6C28C5364E00518BE0 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB6B28C5364D00518BE0 /* ModuleBuilder.swift */; };
+		CCA1DB8328C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB7C28C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift */; };
+		CCA1DB8428C5427F00518BE0 /* DetailPhotoCollectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB7D28C5427F00518BE0 /* DetailPhotoCollectionWorker.swift */; };
+		CCA1DB8528C5427F00518BE0 /* DetailPhotoCollectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB7E28C5427F00518BE0 /* DetailPhotoCollectionRouter.swift */; };
+		CCA1DB8628C5427F00518BE0 /* DetailPhotoCollectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */; };
+		CCA1DB8728C5427F00518BE0 /* DetailPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB8028C5427F00518BE0 /* DetailPhotoCollectionViewController.swift */; };
+		CCA1DB8828C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB8128C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift */; };
+		CCA1DB8928C5427F00518BE0 /* DetailPhotoCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA1DB8228C5427F00518BE0 /* DetailPhotoCollectionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +57,13 @@
 		CCA1DB5F28C4D82E00518BE0 /* PhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
 		CCA1DB6328C4DEC000518BE0 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		CCA1DB6B28C5364D00518BE0 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		CCA1DB7C28C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionPresenter.swift; sourceTree = "<group>"; };
+		CCA1DB7D28C5427F00518BE0 /* DetailPhotoCollectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionWorker.swift; sourceTree = "<group>"; };
+		CCA1DB7E28C5427F00518BE0 /* DetailPhotoCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionRouter.swift; sourceTree = "<group>"; };
+		CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionModels.swift; sourceTree = "<group>"; };
+		CCA1DB8028C5427F00518BE0 /* DetailPhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		CCA1DB8128C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionInteractor.swift; sourceTree = "<group>"; };
+		CCA1DB8228C5427F00518BE0 /* DetailPhotoCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPhotoCollectionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +121,7 @@
 			children = (
 				CCA1DB3A28C49B9B00518BE0 /* MainTabBarController */,
 				CCA1DB3928C49AFA00518BE0 /* PhotosCollection */,
+				CCA1DB6D28C541F000518BE0 /* DetailPhotoCollection */,
 				CCA1DB2328C48F8F00518BE0 /* ViewController.swift */,
 			);
 			path = Classes;
@@ -194,6 +209,20 @@
 			path = ModuleBuilder;
 			sourceTree = "<group>";
 		};
+		CCA1DB6D28C541F000518BE0 /* DetailPhotoCollection */ = {
+			isa = PBXGroup;
+			children = (
+				CCA1DB8028C5427F00518BE0 /* DetailPhotoCollectionViewController.swift */,
+				CCA1DB8128C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift */,
+				CCA1DB7C28C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift */,
+				CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */,
+				CCA1DB7D28C5427F00518BE0 /* DetailPhotoCollectionWorker.swift */,
+				CCA1DB7E28C5427F00518BE0 /* DetailPhotoCollectionRouter.swift */,
+				CCA1DB8228C5427F00518BE0 /* DetailPhotoCollectionViewController.xib */,
+			);
+			path = DetailPhotoCollection;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA1DB8928C5427F00518BE0 /* DetailPhotoCollectionViewController.xib in Resources */,
 				CCA1DB2C28C48F9000518BE0 /* LaunchScreen.storyboard in Resources */,
 				CCA1DB2928C48F9000518BE0 /* Assets.xcassets in Resources */,
 			);
@@ -264,20 +294,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA1DB8728C5427F00518BE0 /* DetailPhotoCollectionViewController.swift in Sources */,
 				CCA1DB2428C48F8F00518BE0 /* ViewController.swift in Sources */,
 				CCA1DB6428C4DEC000518BE0 /* WebImageView.swift in Sources */,
+				CCA1DB8628C5427F00518BE0 /* DetailPhotoCollectionModels.swift in Sources */,
 				CCA1DB2028C48F8F00518BE0 /* AppDelegate.swift in Sources */,
 				CCA1DB4C28C4A84600518BE0 /* PhotosCollectionConfigure.swift in Sources */,
 				CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */,
 				CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */,
+				CCA1DB8828C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift in Sources */,
+				CCA1DB8328C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift in Sources */,
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
 				CCA1DB4428C49C0000518BE0 /* PhotosCollectionRouter.swift in Sources */,
 				CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */,
+				CCA1DB8528C5427F00518BE0 /* DetailPhotoCollectionRouter.swift in Sources */,
 				CCA1DB6028C4D82E00518BE0 /* PhotosCell.swift in Sources */,
 				CCA1DB6C28C5364E00518BE0 /* ModuleBuilder.swift in Sources */,
 				CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */,
 				CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */,
 				CCA1DB4528C49C0000518BE0 /* PhotosCollectionModels.swift in Sources */,
+				CCA1DB8428C5427F00518BE0 /* DetailPhotoCollectionWorker.swift in Sources */,
 				CCA1DB4F28C4AE3C00518BE0 /* NetworkService.swift in Sources */,
 				CCA1DB5E28C4B56000518BE0 /* SearchResults.swift in Sources */,
 				CCA1DB4628C49C0000518BE0 /* PhotosCollectionViewController.swift in Sources */,
