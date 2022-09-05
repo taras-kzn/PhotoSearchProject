@@ -18,8 +18,10 @@ class DetailPhotoCollectionPresenter: DetailPhotoCollectionPresentationLogic {
         switch response {
 
         case .presentDetailsPhoto(photo: let photo):
-            print("")
-           // let detailsPhotoViewModel =
+            let location = "City: \(String(describing: photo.location?.city ?? "")), Country: \(String(describing: photo.location?.country ?? ""))"
+
+            let viewModel = DetailsPhotoViewModel(name: photo.user.name, date: "23-34-2099", location: location, download: String(photo.downloads ?? 0), photoUrlString: photo.urls["regular"]!)
+            viewController?.displayData(viewModel: .displayDetailsPhoto(detailsPhotoViewModel: viewModel))
         }
     }
 }

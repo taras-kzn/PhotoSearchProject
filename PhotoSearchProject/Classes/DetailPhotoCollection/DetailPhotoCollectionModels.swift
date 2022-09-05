@@ -21,12 +21,16 @@ enum DetailPhotoCollection {
         }
         struct ViewModel {
             enum ViewModelData {
-                case displayDetailsPhoto
+                case displayDetailsPhoto(detailsPhotoViewModel: DetailsPhotoViewModel)
             }
         }
     }
 }
 
-struct detailsPhotoViewModel {
-    
+struct DetailsPhotoViewModel {
+    let name: String
+    let date: String
+    let location: String 
+    let download: String
+    let photoUrlString: String
 }

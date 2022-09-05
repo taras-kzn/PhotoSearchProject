@@ -67,7 +67,7 @@ class NetworkService: NetworkingProtocol {
 
     private func setupHeaders() -> [String: String] {
         var headers = [String: String]()
-        headers[Header.auth] = "Client-ID 2-2pWj3hZMqjMUmMqUBAPdqdwBnLIDrkrCrWcLPi834"
+        headers[Header.auth] = "Client-ID -m8C1rG0AmhGyqSYJI4nNFKUSDHy61HusGxl9unkCYo"
         return headers
     }
 
