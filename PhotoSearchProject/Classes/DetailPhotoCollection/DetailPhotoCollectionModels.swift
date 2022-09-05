@@ -27,10 +27,10 @@ enum DetailPhotoCollection {
     }
 }
 
-struct DetailsPhotoViewModel {
-    let name: String
+struct DetailsPhotoViewModel: favoritePhotoViewModelProtocols {
+    var name: String
     let date: String
-    let location: String 
+    let location: String
     let download: String
-    let photoUrlString: String
+    var photoUrlString: String
 }

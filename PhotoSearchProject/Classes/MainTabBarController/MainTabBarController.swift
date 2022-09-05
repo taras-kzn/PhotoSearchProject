@@ -14,7 +14,6 @@ class MainTabBarController: UITabBarController {
     let assemblyBuilder = AssemblyBuilder()
     var routerPhotoCollection: Router!
     var routerFavoritePhotoCollection: Router!
-    let secondVC = ViewController()
 
     //MARK: - lifecycle
     override func viewDidLoad() {

@@ -14,8 +14,16 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - Properties
     var interactor: DetailPhotoCollectionBusinessLogic?
     var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
+    var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", photoUrlString: "")
 
     //MARK: - UIElements
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .orange
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
+
     let photoImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +79,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
+        label.numberOfLines = 0
         return label
     }()
 
@@ -114,6 +123,7 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - setup
     private func setup() {
         view.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
+        addPhotoButton.addTarget(self, action: #selector(didClickAddButton), for: .touchUpInside)
     }
 
     //MARK: - setup Constraints UI elements
@@ -136,6 +146,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         view.addSubview(iconDownloadImageView)
         view.addSubview(downloadLabel)
         view.addSubview(addPhotoButton)
+        view.addSubview(spinner)
 
         iconNameImageView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16).isActive = true
         iconNameImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
@@ -164,11 +175,31 @@ class DetailPhotoCollectionViewController: UIViewController {
         addPhotoButton.topAnchor.constraint(equalTo: iconDownloadImageView.bottomAnchor, constant: 26).isActive = true
         addPhotoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         addPhotoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
     //MARK: - methods
     private func getDetailsPhoto() {
+        spinner.startAnimating()
         interactor?.makeRequest(request: .getDetailsPhoto)
+    }
+
+    @objc func didClickAddButton() {
+        let alertController = UIAlertController(title: "", message: "фото будет добавленно в альбом", preferredStyle: .alert)
+        let add = UIAlertAction(title: "Добавить", style: .default) { [weak self] (action) in
+            guard let self = self else { return }
+            let tabbar = self.tabBarController as! MainTabBarController
+            let navVC = tabbar.viewControllers?[1] as! UINavigationController
+            let favoriteVC = navVC.topViewController as! FavoritePhotosViewController
+            favoriteVC.favoritePhotos.append(self.photoViewModel)
+        }
+        let cancel = UIAlertAction(title: "Отменить", style: .cancel) { (action) in
+        }
+        alertController.addAction(add)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
     }
 }
 
@@ -179,6 +210,8 @@ extension DetailPhotoCollectionViewController: DetailPhotoCollectionDisplayLogic
 
         switch viewModel {
         case .displayDetailsPhoto(detailsPhotoViewModel: let detailsPhotoViewModel):
+            spinner.stopAnimating()
+            photoViewModel = detailsPhotoViewModel
             nameLabeL.text = detailsPhotoViewModel.name
             dateLabeL.text = detailsPhotoViewModel.date
             locationLabeL.text = detailsPhotoViewModel.location

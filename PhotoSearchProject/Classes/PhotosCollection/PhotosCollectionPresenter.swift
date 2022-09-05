@@ -17,12 +17,12 @@ class PhotosCollectionPresenter: PhotosCollectionPresentationLogic {
         switch response {
         case .presentPhotosRandom(photos: let photos):
             let photosViewModel = photos.map { photo in
-                PhotosViewModel.init(id: photo.id, width: photo.width, height: photo.height, photoUrlRegularSize: photo.urls["regular"]!)
+                PhotosViewModel.init(id: photo.id, width: photo.width, height: photo.height, name: photo.user.name, photoUrlRegularSize: photo.urls["regular"]!)
             }
             viewController?.displayData(viewModel: .displayPhotosRandom(photosViewModel: photosViewModel))
         case .presentImageBySearch(photos: let photos):
             let photosViewModel = photos.results.map { photo in
-                PhotosViewModel.init(id: photo.id, width: photo.width, height: photo.height, photoUrlRegularSize: photo.urls["regular"]!)
+                PhotosViewModel.init(id: photo.id, width: photo.width, height: photo.height, name: photo.user.name, photoUrlRegularSize: photo.urls["regular"]!)
             }
             viewController?.displayData(viewModel: .displayImageBySearch(photosViewModel: photosViewModel))
         case .presentCalculationCellSize(width: let width, height: let height, sectionInserts: let sectionInserts):

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CCA1DB2028C48F8F00518BE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB1F28C48F8F00518BE0 /* AppDelegate.swift */; };
 		CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB2128C48F8F00518BE0 /* SceneDelegate.swift */; };
-		CCA1DB2428C48F8F00518BE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB2328C48F8F00518BE0 /* ViewController.swift */; };
 		CCA1DB2928C48F9000518BE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCA1DB2828C48F9000518BE0 /* Assets.xcassets */; };
 		CCA1DB2C28C48F9000518BE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCA1DB2A28C48F9000518BE0 /* LaunchScreen.storyboard */; };
 		CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB3B28C49C0000518BE0 /* PhotosCollectionPresenter.swift */; };
@@ -31,6 +30,14 @@
 		CCA1DB8628C5427F00518BE0 /* DetailPhotoCollectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */; };
 		CCA1DB8728C5427F00518BE0 /* DetailPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB8028C5427F00518BE0 /* DetailPhotoCollectionViewController.swift */; };
 		CCA1DB8828C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA1DB8128C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift */; };
+		CCB2EDC528C6953100093420 /* FavoritePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDC428C6953100093420 /* FavoritePhotoCell.swift */; };
+		CCB2EDCE28C698BE00093420 /* FavoriteDetailPhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDC728C698BE00093420 /* FavoriteDetailPhotoPresenter.swift */; };
+		CCB2EDCF28C698BE00093420 /* FavoriteDetailPhotoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDC828C698BE00093420 /* FavoriteDetailPhotoWorker.swift */; };
+		CCB2EDD028C698BE00093420 /* FavoriteDetailPhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDC928C698BE00093420 /* FavoriteDetailPhotoRouter.swift */; };
+		CCB2EDD128C698BE00093420 /* FavoriteDetailPhotoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDCA28C698BE00093420 /* FavoriteDetailPhotoModels.swift */; };
+		CCB2EDD228C698BE00093420 /* FavoriteDetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDCB28C698BE00093420 /* FavoriteDetailPhotoViewController.swift */; };
+		CCB2EDD328C698BE00093420 /* FavoriteDetailPhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2EDCC28C698BE00093420 /* FavoriteDetailPhotoInteractor.swift */; };
+		CCB2EDD428C698BE00093420 /* FavoriteDetailPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB2EDCD28C698BE00093420 /* FavoriteDetailPhotoViewController.xib */; };
 		CCC7919228C549950016BD38 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7919128C549950016BD38 /* Router.swift */; };
 		CCC7919428C613560016BD38 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7919328C613560016BD38 /* Photo.swift */; };
 		CCC791A428C67A3B0016BD38 /* FavoritePhotosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7919D28C67A3B0016BD38 /* FavoritePhotosPresenter.swift */; };
@@ -44,7 +51,6 @@
 		CCA1DB1C28C48F8F00518BE0 /* PhotoSearchProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSearchProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCA1DB1F28C48F8F00518BE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCA1DB2128C48F8F00518BE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CCA1DB2328C48F8F00518BE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CCA1DB2828C48F9000518BE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCA1DB2B28C48F9000518BE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCA1DB2D28C48F9000518BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PhotoSearchProject/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -67,6 +73,14 @@
 		CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionModels.swift; sourceTree = "<group>"; };
 		CCA1DB8028C5427F00518BE0 /* DetailPhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		CCA1DB8128C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionInteractor.swift; sourceTree = "<group>"; };
+		CCB2EDC428C6953100093420 /* FavoritePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotoCell.swift; sourceTree = "<group>"; };
+		CCB2EDC728C698BE00093420 /* FavoriteDetailPhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoPresenter.swift; sourceTree = "<group>"; };
+		CCB2EDC828C698BE00093420 /* FavoriteDetailPhotoWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoWorker.swift; sourceTree = "<group>"; };
+		CCB2EDC928C698BE00093420 /* FavoriteDetailPhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoRouter.swift; sourceTree = "<group>"; };
+		CCB2EDCA28C698BE00093420 /* FavoriteDetailPhotoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoModels.swift; sourceTree = "<group>"; };
+		CCB2EDCB28C698BE00093420 /* FavoriteDetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoViewController.swift; sourceTree = "<group>"; };
+		CCB2EDCC28C698BE00093420 /* FavoriteDetailPhotoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoInteractor.swift; sourceTree = "<group>"; };
+		CCB2EDCD28C698BE00093420 /* FavoriteDetailPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteDetailPhotoViewController.xib; sourceTree = "<group>"; };
 		CCC7919128C549950016BD38 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CCC7919328C613560016BD38 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		CCC7919D28C67A3B0016BD38 /* FavoritePhotosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosPresenter.swift; sourceTree = "<group>"; };
@@ -133,7 +147,7 @@
 				CCA1DB3928C49AFA00518BE0 /* PhotosCollection */,
 				CCA1DB6D28C541F000518BE0 /* DetailPhotoCollection */,
 				CCC7919C28C67A060016BD38 /* FavoritePhotos */,
-				CCA1DB2328C48F8F00518BE0 /* ViewController.swift */,
+				CCB2EDC628C6987A00093420 /* FavoriteDetailPhoto */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -234,9 +248,24 @@
 			path = DetailPhotoCollection;
 			sourceTree = "<group>";
 		};
+		CCB2EDC628C6987A00093420 /* FavoriteDetailPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				CCB2EDC728C698BE00093420 /* FavoriteDetailPhotoPresenter.swift */,
+				CCB2EDC828C698BE00093420 /* FavoriteDetailPhotoWorker.swift */,
+				CCB2EDC928C698BE00093420 /* FavoriteDetailPhotoRouter.swift */,
+				CCB2EDCA28C698BE00093420 /* FavoriteDetailPhotoModels.swift */,
+				CCB2EDCB28C698BE00093420 /* FavoriteDetailPhotoViewController.swift */,
+				CCB2EDCC28C698BE00093420 /* FavoriteDetailPhotoInteractor.swift */,
+				CCB2EDCD28C698BE00093420 /* FavoriteDetailPhotoViewController.xib */,
+			);
+			path = FavoriteDetailPhoto;
+			sourceTree = "<group>";
+		};
 		CCC7919C28C67A060016BD38 /* FavoritePhotos */ = {
 			isa = PBXGroup;
 			children = (
+				CCB2EDC428C6953100093420 /* FavoritePhotoCell.swift */,
 				CCC791A128C67A3B0016BD38 /* FavoritePhotosViewController.swift */,
 				CCC791A228C67A3B0016BD38 /* FavoritePhotosInteractor.swift */,
 				CCC7919D28C67A3B0016BD38 /* FavoritePhotosPresenter.swift */,
@@ -305,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCA1DB2C28C48F9000518BE0 /* LaunchScreen.storyboard in Resources */,
+				CCB2EDD428C698BE00093420 /* FavoriteDetailPhotoViewController.xib in Resources */,
 				CCA1DB2928C48F9000518BE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,8 +349,8 @@
 				CCA1DB8728C5427F00518BE0 /* DetailPhotoCollectionViewController.swift in Sources */,
 				CCC791A828C67A3B0016BD38 /* FavoritePhotosViewController.swift in Sources */,
 				CCC791A428C67A3B0016BD38 /* FavoritePhotosPresenter.swift in Sources */,
-				CCA1DB2428C48F8F00518BE0 /* ViewController.swift in Sources */,
 				CCA1DB6428C4DEC000518BE0 /* WebImageView.swift in Sources */,
+				CCB2EDCF28C698BE00093420 /* FavoriteDetailPhotoWorker.swift in Sources */,
 				CCA1DB8628C5427F00518BE0 /* DetailPhotoCollectionModels.swift in Sources */,
 				CCA1DB2028C48F8F00518BE0 /* AppDelegate.swift in Sources */,
 				CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */,
@@ -329,21 +359,27 @@
 				CCC7919428C613560016BD38 /* Photo.swift in Sources */,
 				CCA1DB8328C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift in Sources */,
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
+				CCB2EDCE28C698BE00093420 /* FavoriteDetailPhotoPresenter.swift in Sources */,
 				CCA1DB4428C49C0000518BE0 /* PhotosCollectionRouter.swift in Sources */,
 				CCC791A928C67A3B0016BD38 /* FavoritePhotosInteractor.swift in Sources */,
 				CCC791A728C67A3B0016BD38 /* FavoritePhotosModels.swift in Sources */,
 				CCA1DB5C28C4B4D500518BE0 /* NetworkDataFetcher.swift in Sources */,
+				CCB2EDD328C698BE00093420 /* FavoriteDetailPhotoInteractor.swift in Sources */,
 				CCA1DB8528C5427F00518BE0 /* DetailPhotoCollectionRouter.swift in Sources */,
 				CCA1DB6028C4D82E00518BE0 /* PhotosCell.swift in Sources */,
 				CCA1DB6C28C5364E00518BE0 /* AssemblyBuilder.swift in Sources */,
 				CCC791A628C67A3B0016BD38 /* FavoritePhotosRouter.swift in Sources */,
 				CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */,
 				CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */,
+				CCB2EDD128C698BE00093420 /* FavoriteDetailPhotoModels.swift in Sources */,
+				CCB2EDD028C698BE00093420 /* FavoriteDetailPhotoRouter.swift in Sources */,
 				CCC7919228C549950016BD38 /* Router.swift in Sources */,
 				CCA1DB4528C49C0000518BE0 /* PhotosCollectionModels.swift in Sources */,
+				CCB2EDC528C6953100093420 /* FavoritePhotoCell.swift in Sources */,
 				CCA1DB8428C5427F00518BE0 /* DetailPhotoCollectionWorker.swift in Sources */,
 				CCA1DB4F28C4AE3C00518BE0 /* NetworkService.swift in Sources */,
 				CCA1DB5E28C4B56000518BE0 /* SearchResults.swift in Sources */,
+				CCB2EDD228C698BE00093420 /* FavoriteDetailPhotoViewController.swift in Sources */,
 				CCA1DB4628C49C0000518BE0 /* PhotosCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
