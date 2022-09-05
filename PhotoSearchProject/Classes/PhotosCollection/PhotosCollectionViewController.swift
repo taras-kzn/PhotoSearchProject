@@ -18,8 +18,7 @@ class PhotosCollectionViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var timer: Timer?
     private var photos = [PhotosViewModel]()
-    private let itemsPerRow: CGFloat = 2
-    private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    private var sizeCellViewModel = SizeCellViewModel()
 
     //MARK: - View lifecycle
     override func viewDidLoad() {
@@ -28,16 +27,13 @@ class PhotosCollectionViewController: UIViewController {
         setup()
         setupSearchBar()
         setupCollectionView()
-
-        //PhotosCollectionConfigure.shared.configure(with: self)
-
-        interactor?.makeRequest(request: .getPhotosRandom)
+        getPhotoRandom()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        interactor?.makeRequest(request: .getPhotosRandom)
+        getPhotoRandom()
     }
 
     //MARK: - Setup
@@ -64,6 +60,11 @@ class PhotosCollectionViewController: UIViewController {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
     }
+
+    //MARK: - methods
+    private func getPhotoRandom() {
+        interactor?.makeRequest(request: .getPhotosRandom)
+    }
 }
 
 //MARK: - PhotosCollectionDisplayLogic
@@ -81,6 +82,8 @@ extension PhotosCollectionViewController: PhotosCollectionDisplayLogic {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+        case .displayCalculationCellSize(sizeCellViewModel: let sizeCellViewModel):
+            self.sizeCellViewModel = sizeCellViewModel
         }
     }
 }
@@ -100,7 +103,8 @@ extension PhotosCollectionViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        print(photo)
+        router?.showDetails(idPhoto: photo.id)
+        print("main VC -> \(photo.id)")
     }
 }
 
@@ -125,18 +129,16 @@ extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let photo = photos[indexPath.item]
-        let paddingSpace = sectionInserts.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width / itemsPerRow
-        let widthPerItem = availableWidth - paddingSpace
-        let height = CGFloat(photo.height) * widthPerItem / CGFloat(photo.width)
-        return CGSize(width: widthPerItem, height: height)
+        interactor?.makeRequest(request: .getCalculationCellSize(photoHeight: photo.height, photoWidth: photo.width, viewWidth: view.frame.width))
+
+        return sizeCellViewModel.sizeCell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInserts
+        return sizeCellViewModel.sectionInserts
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInserts.left
+        return sizeCellViewModel.sectionInsertsLeft
     }
 }

@@ -7,13 +7,24 @@
 import UIKit
 
 protocol PhotosCollectionRoutingLogic {
-
+    init(router: RouterProtocol)
+    func showDetails(idPhoto: String?)
 }
 
 class PhotosCollectionRouter: NSObject, PhotosCollectionRoutingLogic {
 
     weak var viewController: PhotosCollectionViewController?
+    var router: RouterProtocol!
+
+    required init(router: RouterProtocol) {
+        self.router = router
+    }
+
+    func showDetails(idPhoto: String?){
+        router.showDetailPhotoCollection(idPhoto: idPhoto)
+    }
 
     // MARK: Routing
+
 
 }

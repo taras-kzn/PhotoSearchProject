@@ -15,6 +15,11 @@ class DetailPhotoCollectionPresenter: DetailPhotoCollectionPresentationLogic {
 
     func presentData(response: DetailPhotoCollection.Model.Response.ResponseType) {
 
-    }
+        switch response {
 
+        case .presentDetailsPhoto(photo: let photo):
+            print("")
+           // let detailsPhotoViewModel =
+        }
+    }
 }

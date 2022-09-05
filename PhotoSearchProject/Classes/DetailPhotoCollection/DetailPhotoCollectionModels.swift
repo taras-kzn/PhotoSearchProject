@@ -11,19 +11,22 @@ enum DetailPhotoCollection {
     enum Model {
         struct Request {
             enum RequestType {
-                case some
+                case getDetailsPhoto
             }
         }
         struct Response {
             enum ResponseType {
-                case some
+                case presentDetailsPhoto(photo: Photo)
             }
         }
         struct ViewModel {
             enum ViewModelData {
-                case some
+                case displayDetailsPhoto
             }
         }
     }
+}
 
+struct detailsPhotoViewModel {
+    
 }

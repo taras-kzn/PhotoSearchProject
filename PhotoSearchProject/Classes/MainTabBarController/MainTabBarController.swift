@@ -9,7 +9,10 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     //MARK: - properties
-    let photosVC = ModuleBuilder.creatingPhotosCollection()
+    let navigationPhotoCollection = UINavigationController()
+   // let navigationFavoritePhoto = UINavigationController()
+    let assemblyBuilder = AssemblyBuilder()
+    var routerPhotoCollection: Router!
     let secondVC = ViewController()
 
     //MARK: - lifecycle
@@ -18,6 +21,8 @@ class MainTabBarController: UITabBarController {
 
         setup()
         setupViewControllers()
+
+        routerPhotoCollection = generateRouter(navigationVC: navigationPhotoCollection, title: "wefwef", image: UIImage(systemName: "photo.on.rectangle.angled")!)
     }
 
     //MARK: - setups
@@ -27,14 +32,25 @@ class MainTabBarController: UITabBarController {
     }
 
     private func setupViewControllers() {
-        viewControllers = [ generateNavigationController(rootViewController: photosVC, title: "Photos", image: UIImage(systemName: "photo.on.rectangle.angled")!), generateNavigationController(rootViewController: secondVC, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)]
+        viewControllers = [navigationPhotoCollection,ViewController()]
+//        viewControllers = [ generateNavigationController(rootViewController: photosVC, title: "Photos", image: UIImage(systemName: "photo.on.rectangle.angled")!), generateNavigationController(rootViewController: secondVC, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)]
     }
 
     //MARK: - private methods
-    private func generateNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
-        let navigationVC = UINavigationController(rootViewController: rootViewController)
+//    private func generateNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+//        let navigationVC = UINavigationController(rootViewController: rootViewController)
+//        navigationVC.tabBarItem.title = title
+//        navigationVC.tabBarItem.image = image
+//        return navigationVC
+//    }
+
+    private func generateRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> Router {
+        let navigationVC = navigationVC
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
-        return navigationVC
+        let assemblyBuilder = AssemblyBuilder()
+        let router = Router(navigationController: navigationVC, assemblyBuilder: assemblyBuilder)
+        router.initialViewController()
+        return router
     }
 }

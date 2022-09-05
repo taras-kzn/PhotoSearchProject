@@ -10,47 +10,67 @@ protocol DetailPhotoCollectionDisplayLogic: AnyObject {
     func displayData(viewModel: DetailPhotoCollection.Model.ViewModel.ViewModelData)
 }
 
-class DetailPhotoCollectionViewController: UIViewController, DetailPhotoCollectionDisplayLogic {
-
+class DetailPhotoCollectionViewController: UIViewController {
+    //MARK: - Properties
     var interactor: DetailPhotoCollectionBusinessLogic?
     var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
 
-    //MARK: - Object lifecycle
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    //MARK: - Setup
-
-    private func setup() {
-        let viewController        = self
-        let interactor            = DetailPhotoCollectionInteractor()
-        let presenter             = DetailPhotoCollectionPresenter()
-        let router                = DetailPhotoCollectionRouter()
-        viewController.interactor = interactor
-        viewController.router     = router
-        interactor.presenter      = presenter
-        presenter.viewController  = viewController
-        router.viewController     = viewController
-    }
+    let photoImageView: WebImageView = {
+        let imageView = WebImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .darkGray
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
 
     //MARK: - Routing
 
     //MARK: - View lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setup()
+        getDetailsPhoto()
+
     }
+
+    private func setup() {
+        view.backgroundColor = .blue
+    }
+
+
+    //MARK: - methods
+    private func getDetailsPhoto() {
+        interactor?.makeRequest(request: .getDetailsPhoto)
+    }
+}
+
+//MARK: - DetailPhotoCollectionDisplayLogic
+extension DetailPhotoCollectionViewController: DetailPhotoCollectionDisplayLogic {
 
     func displayData(viewModel: DetailPhotoCollection.Model.ViewModel.ViewModelData) {
 
     }
+}
 
+//MARK: - SwiftUI
+import SwiftUI
+
+struct SignUpViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ContainerView()
+            .edgesIgnoringSafeArea(.all)
+    }
+
+    struct ContainerView: UIViewControllerRepresentable {
+
+        let viewController = DetailPhotoCollectionViewController()
+
+        func makeUIViewController(context: Context) -> some DetailPhotoCollectionViewController {
+            return viewController
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        }
+    }
 }
