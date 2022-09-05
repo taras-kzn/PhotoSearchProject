@@ -15,6 +15,7 @@ struct API {
 struct ApiPath {
     static let searchPhotos = "/search/photos"
     static let photosRandom = "/photos/random"
+    static let detailPhoto = "/photos/"
 }
 
 struct Parameter {
@@ -22,6 +23,7 @@ struct Parameter {
     static let page = "page"
     static let perPage = "per_page"
     static let count = "count"
+    static let id = "id"
 }
 
 struct Header {

@@ -10,6 +10,7 @@ import Foundation
 protocol NetworkingProtocol {
     func requestPhotoSearch(search: String, completion: @escaping (Data?, Error?) -> Void)
     func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void)
+    func requestPhoto(idPhoto: String, completion: @escaping (Data?, Error?) -> Void)
 }
 
 class NetworkService: NetworkingProtocol {
@@ -35,6 +36,18 @@ class NetworkService: NetworkingProtocol {
         task.resume()
     }
 
+    func requestPhoto(idPhoto: String, completion: @escaping (Data?, Error?) -> Void) {
+        let parameters = [String: String]()
+        let path = ApiPath.detailPhoto + idPhoto
+        let url = url(path: path, params: parameters)
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = setupHeaders()
+        request.httpMethod = HTTPMethod.get.rawValue
+        let task = createDataTask(from: request, completion: completion)
+        task.resume()
+    }
+
+    //MARK: -  private methods
     private func setupParameters(search: String?) -> [String: String] {
         var parameters = [String: String]()
         parameters[Parameter.query] = search
@@ -54,7 +67,7 @@ class NetworkService: NetworkingProtocol {
 
     private func setupHeaders() -> [String: String] {
         var headers = [String: String]()
-        headers[Header.auth] = "Client-ID z0x62NPm3OMzBHBlrNybfPup4_-1IZCeIJ0jt92ms0Y"
+        headers[Header.auth] = "Client-ID -m8C1rG0AmhGyqSYJI4nNFKUSDHy61HusGxl9unkCYo"
         return headers
     }
 
