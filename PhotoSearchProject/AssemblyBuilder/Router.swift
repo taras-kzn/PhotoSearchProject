@@ -12,13 +12,19 @@ protocol RouterMain {
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
 }
 
-protocol RouterProtocol: RouterMain {
-    func initialViewController()
-    func showDetailPhotoCollection(idPhoto: String?)
-    func popToRoot()
+protocol RouterPhotosCollectionProtocol {
+    func initialPhotosCollectionViewController()
+    func showDetailPhoto(idPhoto: String?)
+    func popToRootPhotosCollection()
 }
 
-class Router: RouterProtocol {
+protocol RouterFavoritePhotosCollectionProtocol {
+    func initialFavoritePhotosViewController()
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?)
+    func popToRootFavoritePhotos()
+}
+
+class Router: RouterMain {
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
 
@@ -26,24 +32,47 @@ class Router: RouterProtocol {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
+}
 
-
-
-    func initialViewController() {
+//MARK: - RouterPhotosCollectionProtocol
+extension Router: RouterPhotosCollectionProtocol {
+    func initialPhotosCollectionViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return print("danger")}
+            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return }
             navigationController.viewControllers = [mainViewController]
         }
     }
 
-    func showDetailPhotoCollection(idPhoto: String?) {
+    func showDetailPhoto(idPhoto: String?) {
         if let navigationController = navigationController {
             guard let detailViewController = assemblyBuilder?.createDetailPhotosCollection(id: idPhoto, router: self) else { return }
         navigationController.pushViewController(detailViewController, animated: true)
         }
     }
 
-    func popToRoot() {
+    func popToRootPhotosCollection() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+}
+
+extension Router: RouterFavoritePhotosCollectionProtocol {
+    func initialFavoritePhotosViewController() {
+        if let navigationController = navigationController {
+            guard let mainViewController = assemblyBuilder?.createFavoritePhotosCollection(router: self) else { return }
+            navigationController.viewControllers = [mainViewController]
+        }
+    }
+
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?) {
+        if let navigationController = navigationController {
+            guard let detailViewController = assemblyBuilder?.createDetailFavoritePhotoCollection(viewModel: viewModel, router: self) else { return }
+        navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+
+    func popToRootFavoritePhotos() {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }

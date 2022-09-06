@@ -20,6 +20,13 @@ class PhotosCollectionViewController: UIViewController {
     private var photos = [PhotosViewModel]()
     private var sizeCellViewModel = SizeCellViewModel()
 
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = .gray
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
+
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +35,13 @@ class PhotosCollectionViewController: UIViewController {
         setupSearchBar()
         setupCollectionView()
         getPhotoRandom()
+        setupSpinner()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        getPhotoRandom()
+      //  getPhotoRandom()
     }
 
     //MARK: - Setup
@@ -61,8 +69,15 @@ class PhotosCollectionViewController: UIViewController {
         navigationItem.searchController = searchController
     }
 
+    private func setupSpinner() {
+        view.addSubview(spinner)
+        spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+    }
+
     //MARK: - methods
     private func getPhotoRandom() {
+        spinner.startAnimating()
         interactor?.makeRequest(request: .getPhotosRandom)
     }
 }
@@ -73,11 +88,13 @@ extension PhotosCollectionViewController: PhotosCollectionDisplayLogic {
     func displayData(viewModel: PhotosCollection.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayPhotosRandom(photosViewModel: let photosViewModel):
+            spinner.stopAnimating()
             photos = photosViewModel
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         case .displayImageBySearch(photosViewModel: let photosViewModel):
+            self.spinner.stopAnimating()
             photos = photosViewModel
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -104,7 +121,6 @@ extension PhotosCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
         router?.showDetails(idPhoto: photo.id)
-        print("main VC -> \(photo.id)")
     }
 }
 
@@ -116,7 +132,7 @@ extension PhotosCollectionViewController: UICollectionViewDelegate {
 //MARK: - UISearchBarDelegate
 extension PhotosCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        self.spinner.startAnimating()
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             self.interactor?.makeRequest(request: .getImageBySearch(search: searchText))

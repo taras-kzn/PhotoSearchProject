@@ -18,7 +18,7 @@ class PhotosCell: UICollectionViewCell {
     let photoImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .darkGray
+        imageView.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

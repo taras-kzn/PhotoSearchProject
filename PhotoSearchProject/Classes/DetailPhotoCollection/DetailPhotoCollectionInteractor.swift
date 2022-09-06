@@ -13,7 +13,6 @@ protocol DetailPhotoCollectionBusinessLogic {
 
 class DetailPhotoCollectionInteractor: DetailPhotoCollectionBusinessLogic {
     var presenter: DetailPhotoCollectionPresentationLogic?
-    var service: DetailPhotoCollectionService?
     var networkDataFetcher: DataFetcherDetailPhotoProtocol!
     var idPhoto: String?
 
@@ -22,10 +21,6 @@ class DetailPhotoCollectionInteractor: DetailPhotoCollectionBusinessLogic {
     }
 
     func makeRequest(request: DetailPhotoCollection.Model.Request.RequestType) {
-        if service == nil {
-            service = DetailPhotoCollectionService()
-        }
-
         switch request {
 
         case .getDetailsPhoto:

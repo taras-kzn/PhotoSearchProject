@@ -6,6 +6,13 @@
 
 import UIKit
 
+protocol photosViewModel {
+    var id: String { get set }
+    var width: Int { get set }
+    var height: Int { get set }
+    
+}
+
 enum PhotosCollection {
     
     enum Model {
@@ -37,6 +44,7 @@ struct PhotosViewModel: photoCellViewModel{
     var id: String
     var width: Int
     var height: Int
+    var name: String
     var photoUrlRegularSize: String
 }
 

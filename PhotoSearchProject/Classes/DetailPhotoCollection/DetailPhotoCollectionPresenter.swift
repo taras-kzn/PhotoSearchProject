@@ -18,10 +18,22 @@ class DetailPhotoCollectionPresenter: DetailPhotoCollectionPresentationLogic {
         switch response {
 
         case .presentDetailsPhoto(photo: let photo):
-            let location = "City: \(String(describing: photo.location?.city ?? "")), Country: \(String(describing: photo.location?.country ?? ""))"
+            let location = getLocationCity(city: photo.location?.city, country: photo.location?.country)
 
-            let viewModel = DetailsPhotoViewModel(name: photo.user.name, date: "23-34-2099", location: location, download: String(photo.downloads ?? 0), photoUrlString: photo.urls["regular"]!)
+            let viewModel = DetailsPhotoViewModel(name: photo.user.name, date: WorkerDateFormatter.shared.getFormattedDate(dateString: photo.created_at), location: location, download: String(photo.downloads ?? 0), created_at: photo.created_at, photoUrlString: photo.urls["regular"]!)
             viewController?.displayData(viewModel: .displayDetailsPhoto(detailsPhotoViewModel: viewModel))
+        }
+    }
+
+    private func getLocationCity(city: String?, country: String?) -> String {
+        if let city = city, let country = country {
+            return "City: \(city), Country: \(country)"
+        } else if let country = country {
+            return "Country: \(country)"
+        } else if let city = city {
+            return "City: \(city)"
+        } else {
+            return "no location"
         }
     }
 }

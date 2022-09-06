@@ -1,29 +1,22 @@
 //
-//  DetailPhotoCollectionViewController.swift
+//  FavoriteDetailPhotoViewController.swift
 //  PhotoSearchProject
 //
-//  Created by Denis Tarasov on 04.09.2022.
+//  Created by Denis Tarasov on 05.09.2022.
 
 import UIKit
 
-protocol DetailPhotoCollectionDisplayLogic: AnyObject {
-    func displayData(viewModel: DetailPhotoCollection.Model.ViewModel.ViewModelData)
+protocol FavoriteDetailPhotoDisplayLogic: AnyObject {
+    func displayData(viewModel: FavoriteDetailPhoto.Model.ViewModel.ViewModelData)
 }
 
-class DetailPhotoCollectionViewController: UIViewController {
-    //MARK: - Properties
-    var interactor: DetailPhotoCollectionBusinessLogic?
-    var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
-    var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
+class FavoriteDetailPhotoViewController: UIViewController {
+
+    var interactor: FavoriteDetailPhotoBusinessLogic?
+    var router: (NSObjectProtocol & FavoriteDetailPhotoRoutingLogic)?
+    var photo = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
 
     //MARK: - UIElements
-    private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.color = .orange
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        return spinner
-    }()
-
     let photoImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +94,7 @@ class DetailPhotoCollectionViewController: UIViewController {
 
     let addPhotoButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add a photo", for: .normal)
+        button.setTitle("Deleted photo", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -113,9 +106,8 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setup()
-        getDetailsPhoto()
+        getPhoto()
         setupPhotoImageView()
         setupConstraintsElements()
     }
@@ -124,6 +116,33 @@ class DetailPhotoCollectionViewController: UIViewController {
     private func setup() {
         view.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
         addPhotoButton.addTarget(self, action: #selector(didClickAddButton), for: .touchUpInside)
+    }
+
+    private func getPhoto() {
+        interactor?.makeRequest(request: .getDetailsPhoto)
+    }
+
+    @objc func didClickAddButton() {
+        let alertController = UIAlertController(title: "", message: "photo will be deleted", preferredStyle: .alert)
+        let add = UIAlertAction(title: "Deleted", style: .default) { [weak self] (action) in
+            guard let self = self else { return }
+            let tabbar = self.tabBarController as! MainTabBarController
+            let navVC = tabbar.viewControllers?[1] as! UINavigationController
+            let favoriteVC = navVC.viewControllers.first as! FavoritePhotosViewController
+            self.router?.popToRootFavoritePhotos()
+
+            for index in 0..<favoriteVC.favoritePhotos.count {
+                if favoriteVC.favoritePhotos[index].photoUrlString == self.photo.photoUrlString {
+                    favoriteVC.favoritePhotos.remove(at: index)
+                    return
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        }
+        alertController.addAction(add)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
     }
 
     //MARK: - setup Constraints UI elements
@@ -146,7 +165,6 @@ class DetailPhotoCollectionViewController: UIViewController {
         view.addSubview(iconDownloadImageView)
         view.addSubview(downloadLabel)
         view.addSubview(addPhotoButton)
-        view.addSubview(spinner)
 
         iconNameImageView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16).isActive = true
         iconNameImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
@@ -175,72 +193,20 @@ class DetailPhotoCollectionViewController: UIViewController {
         addPhotoButton.topAnchor.constraint(equalTo: iconDownloadImageView.bottomAnchor, constant: 26).isActive = true
         addPhotoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         addPhotoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-
-        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-
-    //MARK: - methods
-    private func getDetailsPhoto() {
-        spinner.startAnimating()
-        interactor?.makeRequest(request: .getDetailsPhoto)
-    }
-
-    @objc func didClickAddButton() {
-        let alertController = UIAlertController(title: "", message: "The photo will be added to the album", preferredStyle: .alert)
-        let add = UIAlertAction(title: "Add", style: .default) { [weak self] (action) in
-            guard let self = self else { return }
-            let tabbar = self.tabBarController as! MainTabBarController
-            let navVC = tabbar.viewControllers?[1] as! UINavigationController
-            let favoriteVC = navVC.topViewController as! FavoritePhotosViewController
-
-            favoriteVC.favoritePhotos.append(self.photoViewModel)
-            self.router?.popToRootPhotosCollection()
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-        }
-        alertController.addAction(add)
-        alertController.addAction(cancel)
-        present(alertController, animated: true)
     }
 }
 
-//MARK: - DetailPhotoCollectionDisplayLogic
-extension DetailPhotoCollectionViewController: DetailPhotoCollectionDisplayLogic {
-
-    func displayData(viewModel: DetailPhotoCollection.Model.ViewModel.ViewModelData) {
-
+//MARK: - FavoriteDetailPhotoDisplayLogic
+extension FavoriteDetailPhotoViewController: FavoriteDetailPhotoDisplayLogic {
+    func displayData(viewModel: FavoriteDetailPhoto.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayDetailsPhoto(detailsPhotoViewModel: let detailsPhotoViewModel):
-            spinner.stopAnimating()
-            photoViewModel = detailsPhotoViewModel
+            photo = detailsPhotoViewModel
             nameLabeL.text = detailsPhotoViewModel.name
             dateLabeL.text = detailsPhotoViewModel.date
             locationLabeL.text = detailsPhotoViewModel.location
             downloadLabel.text = detailsPhotoViewModel.download
             photoImageView.set(imageUrl: detailsPhotoViewModel.photoUrlString)
-        }
-    }
-}
-
-//MARK: - SwiftUI
-import SwiftUI
-
-struct SignUpViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView()
-            .edgesIgnoringSafeArea(.all)
-    }
-
-    struct ContainerView: UIViewControllerRepresentable {
-
-        let viewController = DetailPhotoCollectionViewController()
-
-        func makeUIViewController(context: Context) -> some DetailPhotoCollectionViewController {
-            return viewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         }
     }
 }
