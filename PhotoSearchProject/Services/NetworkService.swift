@@ -27,7 +27,7 @@ class NetworkService: NetworkingProtocol {
 
     func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void) {
         var parameters = [String: String]()
-        parameters[Parameter.count] = String(20)
+        parameters[Parameter.count] = String(25)
         let url = url(path: ApiPath.photosRandom, params: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = setupHeaders()
@@ -67,7 +67,7 @@ class NetworkService: NetworkingProtocol {
 
     private func setupHeaders() -> [String: String] {
         var headers = [String: String]()
-        headers[Header.auth] = "Client-ID T61jQDlo5avBe09rZpVG2FnjmPqGdeZ19yxDq8CXIuU"
+        headers[Header.auth] = "Client-ID N85EXATIyh5CC0RUXJz3qt-ra_FWikhFUOoRZz2IQL8"
         return headers
     }
 

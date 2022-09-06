@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol favoritePhotoViewModelProtocols {
+protocol FavoritePhotoViewModelProtocols {
     var name: String { get set }
     var photoUrlString: String { get set }
 }
@@ -66,7 +66,7 @@ class FavoritePhotoCell: UITableViewCell {
     }
 
     //MARK: - setup
-    func set(viewModel: favoritePhotoViewModelProtocols) {
+    func set(viewModel: FavoritePhotoViewModelProtocols) {
         nameLabel.text = viewModel.name
         photoImageView.set(imageUrl: viewModel.photoUrlString)
     }

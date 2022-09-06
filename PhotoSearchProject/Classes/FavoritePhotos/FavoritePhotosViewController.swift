@@ -23,7 +23,6 @@ class FavoritePhotosViewController: UIViewController {
 
         setupTableView()
         tableView.reloadData()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -62,10 +61,10 @@ extension FavoritePhotosViewController: UITableViewDataSource {
         return cell
     }
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("select row")
-//        interactor?.makeRequest(request: .getLeagues)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = favoritePhotos[indexPath.row]
+        router?.showDetails(viewModel: viewModel)
+    }
 }
 
 extension FavoritePhotosViewController: UITableViewDelegate {

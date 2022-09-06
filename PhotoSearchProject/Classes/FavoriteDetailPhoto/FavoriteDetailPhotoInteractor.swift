@@ -3,24 +3,29 @@
 //  PhotoSearchProject
 //
 //  Created by Denis Tarasov on 05.09.2022.
-//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
-//
 
 import UIKit
 
 protocol FavoriteDetailPhotoBusinessLogic {
-  func makeRequest(request: FavoriteDetailPhoto.Model.Request.RequestType)
+    func makeRequest(request: FavoriteDetailPhoto.Model.Request.RequestType)
+    init(viewModel: DetailsPhotoViewModel?)
 }
 
 class FavoriteDetailPhotoInteractor: FavoriteDetailPhotoBusinessLogic {
+    var presenter: FavoriteDetailPhotoPresentationLogic?
 
-  var presenter: FavoriteDetailPhotoPresentationLogic?
-  var service: FavoriteDetailPhotoService?
+    var viewModel: DetailsPhotoViewModel?
 
-  func makeRequest(request: FavoriteDetailPhoto.Model.Request.RequestType) {
-    if service == nil {
-      service = FavoriteDetailPhotoService()
+    required init(viewModel: DetailsPhotoViewModel?) {
+        self.viewModel = viewModel
     }
-  }
 
+
+    func makeRequest(request: FavoriteDetailPhoto.Model.Request.RequestType) {
+        switch request {
+        case .getDetailsPhoto:
+            guard let photo = viewModel else { return }
+            presenter?.presentData(response: .presentDetailsPhoto(photo: photo))
+        }
+    }
 }

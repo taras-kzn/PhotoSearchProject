@@ -7,20 +7,21 @@
 import UIKit
 
 protocol FavoritePhotosRoutingLogic {
-    init(router: RouterPhotosCollectionProtocol)
-    func showDetails(idPhoto: String?)
+    init(router: RouterFavoritePhotosCollectionProtocol)
+    func showDetails(viewModel: DetailsPhotoViewModel?)
+    
 }
 
 class FavoritePhotosRouter: NSObject, FavoritePhotosRoutingLogic {
     weak var viewController: FavoritePhotosViewController?
 
-    var router: RouterPhotosCollectionProtocol!
+    var router: RouterFavoritePhotosCollectionProtocol!
 
-    required init(router: RouterPhotosCollectionProtocol) {
+    required init(router: RouterFavoritePhotosCollectionProtocol) {
         self.router = router
     }
 
-    func showDetails(idPhoto: String?) {
-        print("")
+    func showDetails(viewModel: DetailsPhotoViewModel?) {
+        router.showDetailFavoritePhoto(viewModel: viewModel)
     }
 }

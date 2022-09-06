@@ -3,29 +3,26 @@
 //  PhotoSearchProject
 //
 //  Created by Denis Tarasov on 05.09.2022.
-//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
-//
 
 import UIKit
 
 enum FavoriteDetailPhoto {
 
-  enum Model {
-    struct Request {
-      enum RequestType {
-        case some
-      }
+    enum Model {
+        struct Request {
+            enum RequestType {
+                case getDetailsPhoto
+            }
+        }
+        struct Response {
+            enum ResponseType {
+                case presentDetailsPhoto(photo: DetailsPhotoViewModel)
+            }
+        }
+        struct ViewModel {
+            enum ViewModelData {
+                case displayDetailsPhoto(detailsPhotoViewModel: DetailsPhotoViewModel)
+            }
+        }
     }
-    struct Response {
-      enum ResponseType {
-        case some
-      }
-    }
-    struct ViewModel {
-      enum ViewModelData {
-        case some
-      }
-    }
-  }
-
 }

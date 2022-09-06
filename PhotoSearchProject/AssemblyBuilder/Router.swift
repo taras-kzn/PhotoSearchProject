@@ -20,7 +20,7 @@ protocol RouterPhotosCollectionProtocol {
 
 protocol RouterFavoritePhotosCollectionProtocol {
     func initialFavoritePhotosViewController()
-    func showDetailFavoritePhoto()
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?)
     func popToRootFavoritePhotos()
 }
 
@@ -38,7 +38,7 @@ class Router: RouterMain {
 extension Router: RouterPhotosCollectionProtocol {
     func initialPhotosCollectionViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return print("danger")}
+            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return }
             navigationController.viewControllers = [mainViewController]
         }
     }
@@ -60,15 +60,15 @@ extension Router: RouterPhotosCollectionProtocol {
 extension Router: RouterFavoritePhotosCollectionProtocol {
     func initialFavoritePhotosViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createFavoritePhotosCollection(router: self) else { return print("danger")}
+            guard let mainViewController = assemblyBuilder?.createFavoritePhotosCollection(router: self) else { return }
             navigationController.viewControllers = [mainViewController]
         }
     }
 
-    func showDetailFavoritePhoto() {
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?) {
         if let navigationController = navigationController {
-//            guard let detailViewController = assemblyBuilder?.createDetailPhotosCollection(id: idPhoto, router: self) else { return }
-       // navigationController.pushViewController(detailViewController, animated: true)
+            guard let detailViewController = assemblyBuilder?.createDetailFavoritePhotoCollection(viewModel: viewModel, router: self) else { return }
+        navigationController.pushViewController(detailViewController, animated: true)
         }
     }
 

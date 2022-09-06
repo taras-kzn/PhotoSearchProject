@@ -3,19 +3,24 @@
 //  PhotoSearchProject
 //
 //  Created by Denis Tarasov on 05.09.2022.
-//  Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
-//
 
 import UIKit
 
 protocol FavoriteDetailPhotoRoutingLogic {
+    init(router: RouterFavoritePhotosCollectionProtocol)
+    func popToRootFavoritePhotos()
 
 }
 
 class FavoriteDetailPhotoRouter: NSObject, FavoriteDetailPhotoRoutingLogic {
+    weak var viewController: FavoriteDetailPhotoViewController?
+    var router: RouterFavoritePhotosCollectionProtocol!
 
-  weak var viewController: FavoriteDetailPhotoViewController?
+    required init(router: RouterFavoritePhotosCollectionProtocol) {
+        self.router = router
+    }
 
-  // MARK: Routing
-
+    func popToRootFavoritePhotos() {
+        router.popToRootFavoritePhotos()
+    }
 }

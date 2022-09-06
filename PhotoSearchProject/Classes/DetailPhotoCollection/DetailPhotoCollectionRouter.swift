@@ -7,13 +7,20 @@
 import UIKit
 
 protocol DetailPhotoCollectionRoutingLogic {
-
+    init(router: RouterPhotosCollectionProtocol)
+    func popToRootPhotosCollection()
 }
 
 class DetailPhotoCollectionRouter: NSObject, DetailPhotoCollectionRoutingLogic {
 
     weak var viewController: DetailPhotoCollectionViewController?
+    var router: RouterPhotosCollectionProtocol!
 
-    //MARK: - Routing
+    required init(router: RouterPhotosCollectionProtocol) {
+        self.router = router
+    }
 
+    func popToRootPhotosCollection() {
+        router.popToRootPhotosCollection()
+    }
 }

@@ -75,7 +75,6 @@ extension NetworkDataFetcher: DataFetcherDetailPhotoProtocol {
             }
 
             let decode = self.decodeJSON(type: Photo.self, from: data)
-           // print(decode?.urls["regular"])
             completion(decode)
         }
     }

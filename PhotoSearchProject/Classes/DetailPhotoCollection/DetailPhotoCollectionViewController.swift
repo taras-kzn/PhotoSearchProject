@@ -14,7 +14,7 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - Properties
     var interactor: DetailPhotoCollectionBusinessLogic?
     var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
-    var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", photoUrlString: "")
+    var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
 
     //MARK: - UIElements
     private let spinner: UIActivityIndicatorView = {
@@ -187,15 +187,17 @@ class DetailPhotoCollectionViewController: UIViewController {
     }
 
     @objc func didClickAddButton() {
-        let alertController = UIAlertController(title: "", message: "фото будет добавленно в альбом", preferredStyle: .alert)
-        let add = UIAlertAction(title: "Добавить", style: .default) { [weak self] (action) in
+        let alertController = UIAlertController(title: "", message: "The photo will be added to the album", preferredStyle: .alert)
+        let add = UIAlertAction(title: "Add", style: .default) { [weak self] (action) in
             guard let self = self else { return }
             let tabbar = self.tabBarController as! MainTabBarController
             let navVC = tabbar.viewControllers?[1] as! UINavigationController
             let favoriteVC = navVC.topViewController as! FavoritePhotosViewController
+
             favoriteVC.favoritePhotos.append(self.photoViewModel)
+            self.router?.popToRootPhotosCollection()
         }
-        let cancel = UIAlertAction(title: "Отменить", style: .cancel) { (action) in
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         alertController.addAction(add)
         alertController.addAction(cancel)

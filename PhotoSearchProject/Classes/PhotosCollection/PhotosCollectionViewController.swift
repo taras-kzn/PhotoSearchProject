@@ -21,7 +21,8 @@ class PhotosCollectionViewController: UIViewController {
     private var sizeCellViewModel = SizeCellViewModel()
 
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .gray)
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = .gray
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
@@ -40,7 +41,7 @@ class PhotosCollectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        getPhotoRandom()
+      //  getPhotoRandom()
     }
 
     //MARK: - Setup
@@ -120,7 +121,6 @@ extension PhotosCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
         router?.showDetails(idPhoto: photo.id)
-        print("main VC -> \(photo.id)")
     }
 }
 
