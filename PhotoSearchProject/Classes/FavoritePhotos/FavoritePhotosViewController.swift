@@ -63,7 +63,7 @@ extension FavoritePhotosViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = favoritePhotos[indexPath.row]
-        router?.showDetails(viewModel: viewModel)
+        router?.showDetailFavoritePhoto(viewModel: viewModel)
     }
 }
 

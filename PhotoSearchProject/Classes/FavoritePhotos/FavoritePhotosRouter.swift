@@ -6,22 +6,47 @@
 
 import UIKit
 
-protocol FavoritePhotosRoutingLogic {
-    init(router: RouterFavoritePhotosCollectionProtocol)
-    func showDetails(viewModel: DetailsPhotoViewModel?)
-    
+protocol FavoritePhotosRouterProtocol {
+    var navigationController: UINavigationController? { get set }
+    var assemblyBuilder: FavoritePhotosModuleAssemblyProtocol? { get set }
 }
 
-class FavoritePhotosRouter: NSObject, FavoritePhotosRoutingLogic {
+protocol FavoritePhotosRoutingLogic {
+    func initialFavoritePhotosViewController()
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?)
+    func popToRootFavoritePhotos()
+}
+
+class FavoritePhotosRouter: NSObject, FavoritePhotosRouterProtocol {
     weak var viewController: FavoritePhotosViewController?
+    var navigationController: UINavigationController?
+    var assemblyBuilder: FavoritePhotosModuleAssemblyProtocol?
+    private let favoriteDetailPhotoModuleAssembly = FavoriteDetailPhotoModuleAssembly()
 
-    var router: RouterFavoritePhotosCollectionProtocol!
+    init(navigationController: UINavigationController?, assemblyBuilder: FavoritePhotosModuleAssemblyProtocol?) {
+        self.navigationController = navigationController
+        self.assemblyBuilder = assemblyBuilder
+    }
+}
 
-    required init(router: RouterFavoritePhotosCollectionProtocol) {
-        self.router = router
+extension FavoritePhotosRouter: FavoritePhotosRoutingLogic {
+    func initialFavoritePhotosViewController() {
+        if let navigationController = navigationController {
+            guard let mainViewController = assemblyBuilder?.createFavoritePhotos(navigationController: navigationController, assemblyBuilder: assemblyBuilder) else { return }
+            navigationController.viewControllers = [mainViewController]
+        }
     }
 
-    func showDetails(viewModel: DetailsPhotoViewModel?) {
-        router.showDetailFavoritePhoto(viewModel: viewModel)
+    func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?) {
+        if let navigationController = navigationController {
+            let detailViewController = favoriteDetailPhotoModuleAssembly.createDetailFavoritePhotoCollection(viewModel: viewModel, navigationController: navigationController)
+            navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+
+    func popToRootFavoritePhotos() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

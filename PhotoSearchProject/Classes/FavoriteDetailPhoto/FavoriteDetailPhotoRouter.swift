@@ -6,21 +6,27 @@
 
 import UIKit
 
-protocol FavoriteDetailPhotoRoutingLogic {
-    init(router: RouterFavoritePhotosCollectionProtocol)
-    func popToRootFavoritePhotos()
-
+protocol FavoriteDetailPhotoRouterProtocol {
+    var navigationController: UINavigationController? { get set }
 }
 
-class FavoriteDetailPhotoRouter: NSObject, FavoriteDetailPhotoRoutingLogic {
+protocol FavoriteDetailPhotoRoutingLogic {
+    func popToRootFavoritePhotos()
+}
+
+class FavoriteDetailPhotoRouter: NSObject, FavoriteDetailPhotoRouterProtocol {
     weak var viewController: FavoriteDetailPhotoViewController?
-    var router: RouterFavoritePhotosCollectionProtocol!
+    var navigationController: UINavigationController?
 
-    required init(router: RouterFavoritePhotosCollectionProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
+}
 
+extension FavoriteDetailPhotoRouter: FavoriteDetailPhotoRoutingLogic {
     func popToRootFavoritePhotos() {
-        router.popToRootFavoritePhotos()
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

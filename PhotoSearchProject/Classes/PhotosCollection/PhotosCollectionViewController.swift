@@ -120,7 +120,7 @@ extension PhotosCollectionViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        router?.showDetails(idPhoto: photo.id)
+        router?.showDetailPhoto(idPhoto: photo.id)
     }
 }
 
@@ -135,6 +135,9 @@ extension PhotosCollectionViewController: UISearchBarDelegate {
         self.spinner.startAnimating()
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            if searchText == "" {
+                self.getPhotoRandom()
+            }
             self.interactor?.makeRequest(request: .getImageBySearch(search: searchText))
         })
     }
