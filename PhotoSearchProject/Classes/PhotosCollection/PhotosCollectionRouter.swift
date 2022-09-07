@@ -9,7 +9,6 @@ import UIKit
 protocol PhotosCollectionRouterProtocol {
     var navigationController: UINavigationController? { get set }
     var assemblyBuilder: PhotoCollectionModuleAssemblyProtocol? { get set }
-
 }
 
 protocol PhotosCollectionRoutingLogic {

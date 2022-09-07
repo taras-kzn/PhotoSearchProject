@@ -60,8 +60,8 @@ extension Router: RouterPhotosCollectionProtocol {
 extension Router: RouterFavoritePhotosCollectionProtocol {
     func initialFavoritePhotosViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createFavoritePhotosCollection(router: self) else { return }
-            navigationController.viewControllers = [mainViewController]
+//            guard let mainViewController = assemblyBuilder?.createFavoritePhotosCollection(router: self) else { return }
+//            navigationController.viewControllers = [mainViewController]
         }
     }
 

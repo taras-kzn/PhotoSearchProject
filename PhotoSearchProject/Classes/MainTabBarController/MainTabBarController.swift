@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     let navigationPhotoCollection = UINavigationController()
     let navigationFavoritePhotoCollection = UINavigationController()
     var routerPhotoCollection: PhotosCollectionRouter!
-    var routerFavoritePhotoCollection: Router!
+    var routerFavoritePhotoCollection: FavoritePhotosRouter!
 
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController {
 
         routerPhotoCollection = generatePhotoCollectionRouter(navigationVC: navigationPhotoCollection, title: "wefwef", image: UIImage(systemName: "photo.on.rectangle.angled")!)
         routerPhotoCollection.initialPhotosCollectionViewController()
-        routerFavoritePhotoCollection = generateRouter(navigationVC: navigationFavoritePhotoCollection, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)
+        routerFavoritePhotoCollection = generateFavoritePhotosRouter(navigationVC: navigationFavoritePhotoCollection, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)
         routerFavoritePhotoCollection.initialFavoritePhotosViewController()
     }
 
@@ -38,15 +38,6 @@ class MainTabBarController: UITabBarController {
     }
 
     //MARK: - private methods
-    private func generateRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> Router {
-        let navigationVC = navigationVC
-        navigationVC.tabBarItem.title = title
-        navigationVC.tabBarItem.image = image
-        let assemblyBuilder = AssemblyBuilder()
-        let router = Router(navigationController: navigationVC, assemblyBuilder: assemblyBuilder)
-        return router
-    }
-
     private func generatePhotoCollectionRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> PhotosCollectionRouter {
         let navigationVC = navigationVC
         navigationVC.tabBarItem.title = title
@@ -55,5 +46,14 @@ class MainTabBarController: UITabBarController {
         let router = PhotosCollectionRouter(navigationController: navigationVC, assemblyBuilder: photosCollectionModuleAssembly)
         return router
 
+    }
+
+    private func generateFavoritePhotosRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> FavoritePhotosRouter {
+        let navigationVC = navigationVC
+        navigationVC.tabBarItem.title = title
+        navigationVC.tabBarItem.image = image
+        let favoritePhotosModuleAssembly = FavoritePhotosModuleAssembly()
+        let router = FavoritePhotosRouter(navigationController: navigationVC, assemblyBuilder: favoritePhotosModuleAssembly)
+        return router
     }
 }
