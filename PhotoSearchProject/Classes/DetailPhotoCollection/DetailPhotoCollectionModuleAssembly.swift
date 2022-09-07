@@ -9,7 +9,6 @@ import UIKit
 
 protocol DetailPhotoCollectionModuleAssemblyProtocol {
     func createDetailPhotosCollection(id: String?, navigationController: UINavigationController?) -> UIViewController
-    
 }
 
 class DetailPhotoCollectionModuleAssembly:  DetailPhotoCollectionModuleAssemblyProtocol {

@@ -67,8 +67,8 @@ extension Router: RouterFavoritePhotosCollectionProtocol {
 
     func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?) {
         if let navigationController = navigationController {
-            guard let detailViewController = assemblyBuilder?.createDetailFavoritePhotoCollection(viewModel: viewModel, router: self) else { return }
-        navigationController.pushViewController(detailViewController, animated: true)
+//            guard let detailViewController = assemblyBuilder?.createDetailFavoritePhotoCollection(viewModel: viewModel, router: self) else { return }
+//        navigationController.pushViewController(detailViewController, animated: true)
         }
     }
 

@@ -11,7 +11,7 @@ protocol AssemblyBuilderProtocol {
    // func createPhotosCollection(router: RouterPhotosCollectionProtocol) -> UIViewController
     func createDetailPhotosCollection(id: String?, router: RouterPhotosCollectionProtocol) -> UIViewController
   //  func createFavoritePhotosCollection(router: RouterFavoritePhotosCollectionProtocol) -> UIViewController
-    func createDetailFavoritePhotoCollection(viewModel: DetailsPhotoViewModel?, router: RouterFavoritePhotosCollectionProtocol) -> UIViewController
+   // func createDetailFavoritePhotoCollection(viewModel: DetailsPhotoViewModel?, router: RouterFavoritePhotosCollectionProtocol) -> UIViewController
 }
 
 class AssemblyBuilder: AssemblyBuilderProtocol {
@@ -60,16 +60,16 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
 //        return viewController
 //    }
 
-    func createDetailFavoritePhotoCollection(viewModel: DetailsPhotoViewModel?, router: RouterFavoritePhotosCollectionProtocol) -> UIViewController {
-        let viewController        = FavoriteDetailPhotoViewController()
-        let interactor            = FavoriteDetailPhotoInteractor(viewModel: viewModel)
-        let presenter             = FavoriteDetailPhotoPresenter()
-        let router                = FavoriteDetailPhotoRouter(router: router)
-        viewController.interactor = interactor
-        viewController.router     = router
-        interactor.presenter      = presenter
-        presenter.viewController  = viewController
-        router.viewController     = viewController
-        return viewController
-    }
+//    func createDetailFavoritePhotoCollection(viewModel: DetailsPhotoViewModel?, router: RouterFavoritePhotosCollectionProtocol) -> UIViewController {
+//        let viewController        = FavoriteDetailPhotoViewController()
+//        let interactor            = FavoriteDetailPhotoInteractor(viewModel: viewModel)
+//        let presenter             = FavoriteDetailPhotoPresenter()
+//        let router                = FavoriteDetailPhotoRouter(router: router)
+//        viewController.interactor = interactor
+//        viewController.router     = router
+//        interactor.presenter      = presenter
+//        presenter.viewController  = viewController
+//        router.viewController     = viewController
+//        return viewController
+//    }
 }

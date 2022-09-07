@@ -21,6 +21,7 @@ class FavoritePhotosRouter: NSObject, FavoritePhotosRouterProtocol {
     weak var viewController: FavoritePhotosViewController?
     var navigationController: UINavigationController?
     var assemblyBuilder: FavoritePhotosModuleAssemblyProtocol?
+    private let favoriteDetailPhotoModuleAssembly = FavoriteDetailPhotoModuleAssembly()
 
     init(navigationController: UINavigationController?, assemblyBuilder: FavoritePhotosModuleAssemblyProtocol?) {
         self.navigationController = navigationController
@@ -37,7 +38,10 @@ extension FavoritePhotosRouter: FavoritePhotosRoutingLogic {
     }
 
     func showDetailFavoritePhoto(viewModel: DetailsPhotoViewModel?) {
-        print("")
+        if let navigationController = navigationController {
+            let detailViewController = favoriteDetailPhotoModuleAssembly.createDetailFavoritePhotoCollection(viewModel: viewModel, navigationController: navigationController)
+            navigationController.pushViewController(detailViewController, animated: true)
+        }
     }
 
     func popToRootFavoritePhotos() {
