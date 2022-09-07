@@ -27,7 +27,7 @@ class NetworkService: NetworkingProtocol {
 
     func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void) {
         var parameters = [String: String]()
-        parameters[Parameter.count] = String(25)
+        parameters[Parameter.count] = String(2)
         let url = url(path: ApiPath.photosRandom, params: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = setupHeaders()
@@ -52,7 +52,7 @@ class NetworkService: NetworkingProtocol {
         var parameters = [String: String]()
         parameters[Parameter.query] = search
         parameters[Parameter.page] = String(1)
-        parameters[Parameter.perPage] = String(25)
+        parameters[Parameter.perPage] = String(2)
         return parameters
     }
 
