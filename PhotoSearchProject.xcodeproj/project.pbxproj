@@ -43,6 +43,7 @@
 		CCC791A728C67A3B0016BD38 /* FavoritePhotosModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC791A028C67A3B0016BD38 /* FavoritePhotosModels.swift */; };
 		CCC791A828C67A3B0016BD38 /* FavoritePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC791A128C67A3B0016BD38 /* FavoritePhotosViewController.swift */; };
 		CCC791A928C67A3B0016BD38 /* FavoritePhotosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC791A228C67A3B0016BD38 /* FavoritePhotosInteractor.swift */; };
+		CCFE1D7228C87C760010F253 /* PhotosCollectionModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7128C87C760010F253 /* PhotosCollectionModuleAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		CCC791A028C67A3B0016BD38 /* FavoritePhotosModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosModels.swift; sourceTree = "<group>"; };
 		CCC791A128C67A3B0016BD38 /* FavoritePhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosViewController.swift; sourceTree = "<group>"; };
 		CCC791A228C67A3B0016BD38 /* FavoritePhotosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosInteractor.swift; sourceTree = "<group>"; };
+		CCFE1D7128C87C760010F253 /* PhotosCollectionModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionModuleAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				CCA1DB3B28C49C0000518BE0 /* PhotosCollectionPresenter.swift */,
 				CCA1DB3E28C49C0000518BE0 /* PhotosCollectionModels.swift */,
 				CCA1DB3D28C49C0000518BE0 /* PhotosCollectionRouter.swift */,
+				CCFE1D7128C87C760010F253 /* PhotosCollectionModuleAssembly.swift */,
 			);
 			path = PhotosCollection;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				CCA1DB4228C49C0000518BE0 /* PhotosCollectionPresenter.swift in Sources */,
 				CCA1DB5128C4AFC800518BE0 /* API.swift in Sources */,
 				CCB2EDD128C698BE00093420 /* FavoriteDetailPhotoModels.swift in Sources */,
+				CCFE1D7228C87C760010F253 /* PhotosCollectionModuleAssembly.swift in Sources */,
 				CCB2EDD028C698BE00093420 /* FavoriteDetailPhotoRouter.swift in Sources */,
 				CCC7919228C549950016BD38 /* Router.swift in Sources */,
 				CCA1DB4528C49C0000518BE0 /* PhotosCollectionModels.swift in Sources */,

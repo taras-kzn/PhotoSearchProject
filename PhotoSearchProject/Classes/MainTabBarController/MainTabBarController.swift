@@ -11,8 +11,7 @@ class MainTabBarController: UITabBarController {
     //MARK: - properties
     let navigationPhotoCollection = UINavigationController()
     let navigationFavoritePhotoCollection = UINavigationController()
-    let assemblyBuilder = AssemblyBuilder()
-    var routerPhotoCollection: Router!
+    var routerPhotoCollection: PhotosCollectionRouter!
     var routerFavoritePhotoCollection: Router!
 
     //MARK: - lifecycle
@@ -28,7 +27,7 @@ class MainTabBarController: UITabBarController {
     private func setup() {
         tabBar.backgroundColor = .white
 
-        routerPhotoCollection = generateRouter(navigationVC: navigationPhotoCollection, title: "wefwef", image: UIImage(systemName: "photo.on.rectangle.angled")!)
+        routerPhotoCollection = generatePhotoCollectionRouter(navigationVC: navigationPhotoCollection, title: "wefwef", image: UIImage(systemName: "photo.on.rectangle.angled")!)
         routerPhotoCollection.initialPhotosCollectionViewController()
         routerFavoritePhotoCollection = generateRouter(navigationVC: navigationFavoritePhotoCollection, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)
         routerFavoritePhotoCollection.initialFavoritePhotosViewController()
@@ -46,5 +45,15 @@ class MainTabBarController: UITabBarController {
         let assemblyBuilder = AssemblyBuilder()
         let router = Router(navigationController: navigationVC, assemblyBuilder: assemblyBuilder)
         return router
+    }
+
+    private func generatePhotoCollectionRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> PhotosCollectionRouter {
+        let navigationVC = navigationVC
+        navigationVC.tabBarItem.title = title
+        navigationVC.tabBarItem.image = image
+        let photosCollectionModuleAssembly = PhotosCollectionModuleAssembly()
+        let router = PhotosCollectionRouter(navigationController: navigationVC, assemblyBuilder: photosCollectionModuleAssembly)
+        return router
+
     }
 }

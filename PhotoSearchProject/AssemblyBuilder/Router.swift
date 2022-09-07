@@ -38,8 +38,8 @@ class Router: RouterMain {
 extension Router: RouterPhotosCollectionProtocol {
     func initialPhotosCollectionViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return }
-            navigationController.viewControllers = [mainViewController]
+//            guard let mainViewController = assemblyBuilder?.createPhotosCollection(router: self) else { return }
+//            navigationController.viewControllers = [mainViewController]
         }
     }
 

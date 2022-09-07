@@ -6,21 +6,48 @@
 
 import UIKit
 
-protocol PhotosCollectionRoutingLogic {
-    init(router: RouterPhotosCollectionProtocol)
-    func showDetails(idPhoto: String?)
+protocol PhotosCollectionRouterProtocol {
+    var navigationController: UINavigationController? { get set }
+    var assemblyBuilder: PhotoCollectionModuleAssembly? { get set }
 }
 
-class PhotosCollectionRouter: NSObject, PhotosCollectionRoutingLogic {
+protocol PhotosCollectionRoutingLogic {
+    func initialPhotosCollectionViewController()
+    func showDetailPhoto(idPhoto: String?)
+    func popToRootPhotosCollection()
+}
 
+class PhotosCollectionRouter: NSObject, PhotosCollectionRouterProtocol {
     weak var viewController: PhotosCollectionViewController?
-    var router: RouterPhotosCollectionProtocol!
+    var navigationController: UINavigationController?
+    var assemblyBuilder: PhotoCollectionModuleAssembly?
 
-    required init(router: RouterPhotosCollectionProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssembly?) {
+        self.navigationController = navigationController
+        self.assemblyBuilder = assemblyBuilder
+    }
+}
+
+//MARK: - PhotosCollectionRoutingLogic
+extension PhotosCollectionRouter: PhotosCollectionRoutingLogic {
+
+    func initialPhotosCollectionViewController() {
+        if let navigationController = navigationController {
+            guard let mainViewController = assemblyBuilder?.createPhotosCollection(navigationController: navigationController, assemblyBuilder: assemblyBuilder) else { return }
+            navigationController.viewControllers = [mainViewController]
+        }
     }
 
-    func showDetails(idPhoto: String?){
-        router.showDetailPhoto(idPhoto: idPhoto)
+    func showDetailPhoto(idPhoto: String?) {
+        if let navigationController = navigationController {
+//            guard let detailViewController = assemblyBuilder?.createDetailPhotosCollection(id: idPhoto, router: self) else { return }
+//        navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+
+    func popToRootPhotosCollection() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }
