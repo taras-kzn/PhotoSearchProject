@@ -14,7 +14,7 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - Properties
     var interactor: DetailPhotoCollectionBusinessLogic?
     var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
-    var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
+    private var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
 
     //MARK: - UIElements
     private let spinner: UIActivityIndicatorView = {
@@ -24,7 +24,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return spinner
     }()
 
-    let photoImageView: WebImageView = {
+    private let photoImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
@@ -32,7 +32,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return imageView
     }()
 
-    let iconNameImageView: WebImageView = {
+    private let iconNameImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "person")
@@ -40,7 +40,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return imageView
     }()
 
-    let nameLabeL: UILabel = {
+    private let nameLabeL: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = .black
@@ -49,7 +49,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return label
     }()
 
-    let iconDateImageView: WebImageView = {
+    private let iconDateImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "calendar")
@@ -57,7 +57,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return imageView
     }()
 
-    let dateLabeL: UILabel = {
+    private let dateLabeL: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = .black
@@ -66,7 +66,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return label
     }()
 
-    let iconLocationImageView: WebImageView = {
+    private let iconLocationImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "location")
@@ -74,7 +74,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return imageView
     }()
 
-    let locationLabeL: UILabel = {
+    private let locationLabeL: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +83,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return label
     }()
 
-    let iconDownloadImageView: WebImageView = {
+    private let iconDownloadImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "square.and.arrow.down")
@@ -91,7 +91,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return imageView
     }()
 
-    let downloadLabel: UILabel = {
+    private let downloadLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ class DetailPhotoCollectionViewController: UIViewController {
         return label
     }()
 
-    let addPhotoButton: UIButton = {
+    private let addPhotoButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add a photo", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -148,36 +148,36 @@ class DetailPhotoCollectionViewController: UIViewController {
         view.addSubview(addPhotoButton)
         view.addSubview(spinner)
 
-        iconNameImageView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16).isActive = true
-        iconNameImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
+        NSLayoutConstraint.activate([iconNameImageView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16),
+                                     iconNameImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26)])
 
-        nameLabeL.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16).isActive = true
-        nameLabeL.leadingAnchor.constraint(equalTo: iconNameImageView.trailingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([nameLabeL.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16),
+                                     nameLabeL.leadingAnchor.constraint(equalTo: iconNameImageView.trailingAnchor, constant: 16)])
 
-        iconDateImageView.topAnchor.constraint(equalTo: iconNameImageView.bottomAnchor, constant: 16).isActive = true
-        iconDateImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
+        NSLayoutConstraint.activate([iconDateImageView.topAnchor.constraint(equalTo: iconNameImageView.bottomAnchor, constant: 16),
+                                     iconDateImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26)])
 
-        dateLabeL.topAnchor.constraint(equalTo: nameLabeL.bottomAnchor, constant: 16).isActive = true
-        dateLabeL.leadingAnchor.constraint(equalTo: iconDateImageView.trailingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([dateLabeL.topAnchor.constraint(equalTo: nameLabeL.bottomAnchor, constant: 16),
+                                     dateLabeL.leadingAnchor.constraint(equalTo: iconDateImageView.trailingAnchor, constant: 16)])
 
-        iconLocationImageView.topAnchor.constraint(equalTo: iconDateImageView.bottomAnchor, constant: 16).isActive = true
-        iconLocationImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
+        NSLayoutConstraint.activate([iconLocationImageView.topAnchor.constraint(equalTo: iconDateImageView.bottomAnchor, constant: 16),
+                                     iconLocationImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26)])
 
-        locationLabeL.topAnchor.constraint(equalTo: dateLabeL.bottomAnchor, constant: 16).isActive = true
-        locationLabeL.leadingAnchor.constraint(equalTo: iconLocationImageView.trailingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([locationLabeL.topAnchor.constraint(equalTo: dateLabeL.bottomAnchor, constant: 16),
+                                     locationLabeL.leadingAnchor.constraint(equalTo: iconLocationImageView.trailingAnchor, constant: 16)])
 
-        iconDownloadImageView.topAnchor.constraint(equalTo: iconLocationImageView.bottomAnchor, constant: 16).isActive = true
-        iconDownloadImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
+        NSLayoutConstraint.activate([iconDownloadImageView.topAnchor.constraint(equalTo: iconLocationImageView.bottomAnchor, constant: 16),
+                                     iconDownloadImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26)])
 
-        downloadLabel.topAnchor.constraint(equalTo: locationLabeL.bottomAnchor, constant: 16).isActive = true
-        downloadLabel.leadingAnchor.constraint(equalTo: iconDownloadImageView.trailingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([downloadLabel.topAnchor.constraint(equalTo: locationLabeL.bottomAnchor, constant: 16),
+                                     downloadLabel.leadingAnchor.constraint(equalTo: iconDownloadImageView.trailingAnchor, constant: 16)])
 
-        addPhotoButton.topAnchor.constraint(equalTo: iconDownloadImageView.bottomAnchor, constant: 26).isActive = true
-        addPhotoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        addPhotoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        NSLayoutConstraint.activate([addPhotoButton.topAnchor.constraint(equalTo: iconDownloadImageView.bottomAnchor, constant: 26),
+                                     addPhotoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     addPhotoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
 
-        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
     }
 
     //MARK: - methods

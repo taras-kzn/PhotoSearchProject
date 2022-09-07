@@ -6,21 +6,27 @@
 
 import UIKit
 
+protocol DetailPhotosCollectionRouterProtocol {
+    var navigationController: UINavigationController? { get set }
+}
+
 protocol DetailPhotoCollectionRoutingLogic {
-    init(router: RouterPhotosCollectionProtocol)
     func popToRootPhotosCollection()
 }
 
-class DetailPhotoCollectionRouter: NSObject, DetailPhotoCollectionRoutingLogic {
-
+class DetailPhotoCollectionRouter: NSObject, DetailPhotosCollectionRouterProtocol {
     weak var viewController: DetailPhotoCollectionViewController?
-    var router: RouterPhotosCollectionProtocol!
+    var navigationController: UINavigationController?
 
-    required init(router: RouterPhotosCollectionProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
+}
 
+extension DetailPhotoCollectionRouter: DetailPhotoCollectionRoutingLogic {
     func popToRootPhotosCollection() {
-        router.popToRootPhotosCollection()
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol PhotoCollectionModuleAssembly {
-    func createPhotosCollection(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssembly?) -> UIViewController
+protocol PhotoCollectionModuleAssemblyProtocol {
+    func createPhotosCollection(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssemblyProtocol?) -> UIViewController
 }
 
-class PhotosCollectionModuleAssembly: PhotoCollectionModuleAssembly {
-    func createPhotosCollection(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssembly?) -> UIViewController {
+class PhotosCollectionModuleAssembly: PhotoCollectionModuleAssemblyProtocol {
+    func createPhotosCollection(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssemblyProtocol?) -> UIViewController {
         let viewController = PhotosCollectionViewController()
         let interactor            = PhotosCollectionInteractor()
         let presenter             = PhotosCollectionPresenter()

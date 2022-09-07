@@ -8,7 +8,8 @@ import UIKit
 
 protocol PhotosCollectionRouterProtocol {
     var navigationController: UINavigationController? { get set }
-    var assemblyBuilder: PhotoCollectionModuleAssembly? { get set }
+    var assemblyBuilder: PhotoCollectionModuleAssemblyProtocol? { get set }
+
 }
 
 protocol PhotosCollectionRoutingLogic {
@@ -20,9 +21,10 @@ protocol PhotosCollectionRoutingLogic {
 class PhotosCollectionRouter: NSObject, PhotosCollectionRouterProtocol {
     weak var viewController: PhotosCollectionViewController?
     var navigationController: UINavigationController?
-    var assemblyBuilder: PhotoCollectionModuleAssembly?
+    var assemblyBuilder: PhotoCollectionModuleAssemblyProtocol?
+    private let detailPhotoCollectionModuleAssembly = DetailPhotoCollectionModuleAssembly()
 
-    init(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssembly?) {
+    init(navigationController: UINavigationController?, assemblyBuilder: PhotoCollectionModuleAssemblyProtocol?) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
@@ -40,8 +42,8 @@ extension PhotosCollectionRouter: PhotosCollectionRoutingLogic {
 
     func showDetailPhoto(idPhoto: String?) {
         if let navigationController = navigationController {
-//            guard let detailViewController = assemblyBuilder?.createDetailPhotosCollection(id: idPhoto, router: self) else { return }
-//        navigationController.pushViewController(detailViewController, animated: true)
+            let detailViewController = detailPhotoCollectionModuleAssembly.createDetailPhotosCollection(id: idPhoto, navigationController: navigationController)
+            navigationController.pushViewController(detailViewController, animated: true)
         }
     }
 

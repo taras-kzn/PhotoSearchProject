@@ -35,7 +35,7 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         let viewController        = DetailPhotoCollectionViewController()
         let interactor            = DetailPhotoCollectionInteractor(idPhoto: id)
         let presenter             = DetailPhotoCollectionPresenter()
-        let router                = DetailPhotoCollectionRouter(router: router)
+        let router                = DetailPhotoCollectionRouter(navigationController: router as! UINavigationController)
         let networkService        = NetworkService()
         let networkDataFetcher    = NetworkDataFetcher(networkService: networkService)
         viewController.interactor = interactor

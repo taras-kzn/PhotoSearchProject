@@ -44,6 +44,7 @@
 		CCC791A828C67A3B0016BD38 /* FavoritePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC791A128C67A3B0016BD38 /* FavoritePhotosViewController.swift */; };
 		CCC791A928C67A3B0016BD38 /* FavoritePhotosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC791A228C67A3B0016BD38 /* FavoritePhotosInteractor.swift */; };
 		CCFE1D7228C87C760010F253 /* PhotosCollectionModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7128C87C760010F253 /* PhotosCollectionModuleAssembly.swift */; };
+		CCFE1D7428C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7328C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		CCC791A128C67A3B0016BD38 /* FavoritePhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosViewController.swift; sourceTree = "<group>"; };
 		CCC791A228C67A3B0016BD38 /* FavoritePhotosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosInteractor.swift; sourceTree = "<group>"; };
 		CCFE1D7128C87C760010F253 /* PhotosCollectionModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionModuleAssembly.swift; sourceTree = "<group>"; };
+		CCFE1D7328C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionModuleAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				CCA1DB7C28C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift */,
 				CCA1DB7F28C5427F00518BE0 /* DetailPhotoCollectionModels.swift */,
 				CCA1DB7E28C5427F00518BE0 /* DetailPhotoCollectionRouter.swift */,
+				CCFE1D7328C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift */,
 			);
 			path = DetailPhotoCollection;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				CCA1DB8828C5427F00518BE0 /* DetailPhotoCollectionInteractor.swift in Sources */,
 				CCC7919428C613560016BD38 /* Photo.swift in Sources */,
 				CCA1DB8328C5427F00518BE0 /* DetailPhotoCollectionPresenter.swift in Sources */,
+				CCFE1D7428C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift in Sources */,
 				CCA1DB2228C48F8F00518BE0 /* SceneDelegate.swift in Sources */,
 				CCB2EDCE28C698BE00093420 /* FavoriteDetailPhotoPresenter.swift in Sources */,
 				CCB2EDD728C6BD5300093420 /* WorkerDateFormatter.swift in Sources */,
