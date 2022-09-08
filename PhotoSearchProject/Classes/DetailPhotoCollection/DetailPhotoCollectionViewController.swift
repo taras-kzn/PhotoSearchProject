@@ -194,7 +194,19 @@ class DetailPhotoCollectionViewController: UIViewController {
             let navVC = tabbar.viewControllers?[1] as! UINavigationController
             let favoriteVC = navVC.topViewController as! FavoritePhotosViewController
 
-            favoriteVC.favoritePhotos.append(self.photoViewModel)
+            if favoriteVC.favoritePhotos.count == 0 {
+                favoriteVC.favoritePhotos.append(self.photoViewModel)
+            } else {
+                var isAppendPhoto = true
+                for photo in favoriteVC.favoritePhotos {
+                    if photo.photoUrlString.lowercased() == self.photoViewModel.photoUrlString.lowercased() {
+                        isAppendPhoto = false
+                    }
+                }
+                if isAppendPhoto {
+                    favoriteVC.favoritePhotos.append(self.photoViewModel)
+                }
+            }
             self.router?.popToRootPhotosCollection()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
