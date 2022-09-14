@@ -41,7 +41,10 @@ class PhotosCollectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-      //  getPhotoRandom()
+    }
+
+    deinit {
+        print("PhotosCollectionViewController - no retain cycle")
     }
 
     //MARK: - Setup

@@ -45,6 +45,9 @@
 		CCFE1D7428C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7328C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift */; };
 		CCFE1D7628C891B70010F253 /* FavoritePhotosModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7528C891B70010F253 /* FavoritePhotosModuleAssembly.swift */; };
 		CCFE1D7828C896BA0010F253 /* FavoriteDetailPhotoModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7728C896BA0010F253 /* FavoriteDetailPhotoModuleAssembly.swift */; };
+		CCFE1D7B28CA0EFF0010F253 /* NetDetect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7A28CA0EFF0010F253 /* NetDetect.swift */; };
+		CCFE1D7D28CA0F180010F253 /* NetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D7C28CA0F180010F253 /* NetStatus.swift */; };
+		CCFE1D8128CA649E0010F253 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE1D8028CA649E0010F253 /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +91,9 @@
 		CCFE1D7328C885A80010F253 /* DetailPhotoCollectionModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoCollectionModuleAssembly.swift; sourceTree = "<group>"; };
 		CCFE1D7528C891B70010F253 /* FavoritePhotosModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosModuleAssembly.swift; sourceTree = "<group>"; };
 		CCFE1D7728C896BA0010F253 /* FavoriteDetailPhotoModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailPhotoModuleAssembly.swift; sourceTree = "<group>"; };
+		CCFE1D7A28CA0EFF0010F253 /* NetDetect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetDetect.swift; sourceTree = "<group>"; };
+		CCFE1D7C28CA0F180010F253 /* NetStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetStatus.swift; sourceTree = "<group>"; };
+		CCFE1D8028CA649E0010F253 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +201,10 @@
 			isa = PBXGroup;
 			children = (
 				CCA1DB4E28C4AE3C00518BE0 /* NetworkService.swift */,
-				CCA1DB5028C4AFC800518BE0 /* API.swift */,
 				CCA1DB5B28C4B4D500518BE0 /* NetworkDataFetcher.swift */,
+				CCA1DB5028C4AFC800518BE0 /* API.swift */,
+				CCFE1D8028CA649E0010F253 /* APIError.swift */,
+				CCFE1D7928CA0EAC0010F253 /* NetStatus */,
 				CCA1DB5228C4B36600518BE0 /* Models */,
 			);
 			path = Services;
@@ -275,6 +283,15 @@
 			path = FavoritePhotos;
 			sourceTree = "<group>";
 		};
+		CCFE1D7928CA0EAC0010F253 /* NetStatus */ = {
+			isa = PBXGroup;
+			children = (
+				CCFE1D7A28CA0EFF0010F253 /* NetDetect.swift */,
+				CCFE1D7C28CA0F180010F253 /* NetStatus.swift */,
+			);
+			path = NetStatus;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,9 +365,11 @@
 				CCA1DB8728C5427F00518BE0 /* DetailPhotoCollectionViewController.swift in Sources */,
 				CCC791A828C67A3B0016BD38 /* FavoritePhotosViewController.swift in Sources */,
 				CCFE1D7828C896BA0010F253 /* FavoriteDetailPhotoModuleAssembly.swift in Sources */,
+				CCFE1D7B28CA0EFF0010F253 /* NetDetect.swift in Sources */,
 				CCC791A428C67A3B0016BD38 /* FavoritePhotosPresenter.swift in Sources */,
 				CCA1DB6428C4DEC000518BE0 /* WebImageView.swift in Sources */,
 				CCA1DB8628C5427F00518BE0 /* DetailPhotoCollectionModels.swift in Sources */,
+				CCFE1D7D28CA0F180010F253 /* NetStatus.swift in Sources */,
 				CCA1DB2028C48F8F00518BE0 /* AppDelegate.swift in Sources */,
 				CCA1DB4A28C49CEB00518BE0 /* MainTabBarController.swift in Sources */,
 				CCA1DB4728C49C0000518BE0 /* PhotosCollectionInteractor.swift in Sources */,
@@ -381,6 +400,7 @@
 				CCB2EDD228C698BE00093420 /* FavoriteDetailPhotoViewController.swift in Sources */,
 				CCFE1D7628C891B70010F253 /* FavoritePhotosModuleAssembly.swift in Sources */,
 				CCA1DB4628C49C0000518BE0 /* PhotosCollectionViewController.swift in Sources */,
+				CCFE1D8128CA649E0010F253 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,16 +12,19 @@ enum DetailPhotoCollection {
         struct Request {
             enum RequestType {
                 case getDetailsPhoto
+                case addPhoto(favoritePhotos: [DetailsPhotoViewModel])
             }
         }
         struct Response {
             enum ResponseType {
                 case presentDetailsPhoto(photo: Photo)
+                case presentAddedPhoto(favoritePhotos: [DetailsPhotoViewModel])
             }
         }
         struct ViewModel {
             enum ViewModelData {
                 case displayDetailsPhoto(detailsPhotoViewModel: DetailsPhotoViewModel)
+                case displayAddedPhoto(detailsPhotoViewModel: [DetailsPhotoViewModel])
             }
         }
     }

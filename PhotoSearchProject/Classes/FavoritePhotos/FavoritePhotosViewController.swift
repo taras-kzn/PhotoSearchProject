@@ -21,6 +21,7 @@ class FavoritePhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setup()
         setupTableView()
         tableView.reloadData()
     }
@@ -30,6 +31,10 @@ class FavoritePhotosViewController: UIViewController {
     }
 
     //MARK: - Setup
+    private func setup() {
+        navigationItem.title = "Favorite"
+    }
+    
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

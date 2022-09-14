@@ -22,14 +22,24 @@ class PhotosCollectionInteractor: PhotosCollectionBusinessLogic {
 
         switch request {
         case .getPhotosRandom:
-            networkDataFetcher.getImageRandom { [weak self] photos in
-                guard let photos = photos, let self = self else { return }
-                self.presenter?.presentData(response: .presentPhotosRandom(photos: photos))
+            networkDataFetcher.getImageRandom { [weak self] results in
+                guard let self = self else { return }
+                switch results {
+                case .success(let photos):
+                    self.presenter?.presentData(response: .presentPhotosRandom(photos: photos))
+                case .failure(let error):
+                    print(".failure(let error) -> \(error.errorDescription)")
+                }
             }
         case .getImageBySearch(search: let search):
             networkDataFetcher.getImageBySearch(search: search) { [weak self] results in
-                guard let photos = results, let self = self else { return }
-                self.presenter?.presentData(response: .presentImageBySearch(photos: photos))
+                guard let self = self else { return }
+                switch results {
+                case .success(let photos):
+                    self.presenter?.presentData(response: .presentImageBySearch(photos: photos))
+                case .failure(let error):
+                    print(".failure(let error) -> \(error.errorDescription)")
+                }
             }
         case .getCalculationCellSize(photoHeight: let photoHeight, photoWidth: let photoWidth, viewWidth: let viewWidth):
             let paddingSpace = sectionInserts.left * (itemsPerRow + 1)

@@ -7,15 +7,16 @@
 
 import Foundation
 
+
 protocol NetworkingProtocol {
-    func requestPhotoSearch(search: String, completion: @escaping (Data?, Error?) -> Void)
-    func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void)
-    func requestPhoto(idPhoto: String, completion: @escaping (Data?, Error?) -> Void)
+    func requestPhotoSearch(search: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func requestPhotoRandom(completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func requestPhoto(idPhoto: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
 }
 
 class NetworkService: NetworkingProtocol {
 
-    func requestPhotoSearch(search: String, completion: @escaping (Data?, Error?) -> Void) {
+    func requestPhotoSearch(search: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         let parameters = setupParameters(search: search)
         let url = url(path: ApiPath.searchPhotos, params: parameters)
         var request = URLRequest(url: url)
@@ -25,9 +26,9 @@ class NetworkService: NetworkingProtocol {
         task.resume()
     }
 
-    func requestPhotoRandom(completion: @escaping (Data?, Error?) -> Void) {
+    func requestPhotoRandom(completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         var parameters = [String: String]()
-        parameters[Parameter.count] = String(25)
+        parameters[Parameter.count] = String(2)
         let url = url(path: ApiPath.photosRandom, params: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = setupHeaders()
@@ -36,7 +37,7 @@ class NetworkService: NetworkingProtocol {
         task.resume()
     }
 
-    func requestPhoto(idPhoto: String, completion: @escaping (Data?, Error?) -> Void) {
+    func requestPhoto(idPhoto: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         let parameters = [String: String]()
         let path = ApiPath.detailPhoto + idPhoto
         let url = url(path: path, params: parameters)
@@ -62,7 +63,8 @@ class NetworkService: NetworkingProtocol {
         components.host = API.host
         components.path = path
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
-        return components.url!
+        guard let url = components.url else { fatalError("Could not create URL from components")}
+        return url
     }
 
     private func setupHeaders() -> [String: String] {
@@ -71,10 +73,10 @@ class NetworkService: NetworkingProtocol {
         return headers
     }
 
-    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSession.shared.dataTask(with: request) { (date, response, error) in
+    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                completion(date,error)
+                completion(data, response, error)
             }
         }
     }

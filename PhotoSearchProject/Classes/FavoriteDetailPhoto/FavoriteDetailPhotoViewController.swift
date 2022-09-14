@@ -112,6 +112,10 @@ class FavoriteDetailPhotoViewController: UIViewController {
         setupConstraintsElements()
     }
 
+    deinit {
+        print("FavoriteDetailPhotoViewController - no retain cycle")
+    }
+
     //MARK: - setup
     private func setup() {
         view.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
