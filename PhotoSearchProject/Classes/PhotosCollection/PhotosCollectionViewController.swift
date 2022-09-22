@@ -42,16 +42,7 @@ class PhotosCollectionViewController: UIViewController {
         super.viewDidAppear(animated)
 
       //  getPhotoRandom()
-        //Test
     }
-
-    deinit {
-        print("PhotosCollectionViewController - no retain cycle")
-    }
-
-
-
-    //wefwefwefwefwef
 
     //MARK: - Setup
     private func setup() {
