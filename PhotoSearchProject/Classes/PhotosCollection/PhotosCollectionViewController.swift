@@ -43,6 +43,7 @@ class PhotosCollectionViewController: UIViewController {
 
       //  getPhotoRandom()
         //Это ветка developer
+        //developer developer developer 
     }
 
     //MARK: - Setup
