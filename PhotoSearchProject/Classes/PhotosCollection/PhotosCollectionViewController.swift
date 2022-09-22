@@ -42,16 +42,19 @@ class PhotosCollectionViewController: UIViewController {
         super.viewDidAppear(animated)
 
       //  getPhotoRandom()
-        //Developer
-        //Developer
-        //Developer
-        //Developer 
     }
 
     //MARK: - Setup
     private func setup() {
         navigationItem.title = "Photos"
     }
+    //Developer
+    //Developer
+    //Developer
+    //Developer //Developer
+    //Developer
+    //Developer
+    //Developer 
 
     //MARK: - setup CollectionView
     private func setupCollectionView() {
