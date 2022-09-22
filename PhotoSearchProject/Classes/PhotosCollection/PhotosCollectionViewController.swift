@@ -45,6 +45,14 @@ class PhotosCollectionViewController: UIViewController {
         //Test
     }
 
+    deinit {
+        print("PhotosCollectionViewController - no retain cycle")
+    }
+    
+    deinit {
+        print("PhotosCollectionViewController - no retain cycle")
+    }
+
     //MARK: - Setup
     private func setup() {
         navigationItem.title = "Photos"

@@ -22,12 +22,16 @@ class MainTabBarController: UITabBarController {
         setupViewControllers()
     }
 
+    deinit {
+        print("wefwe")
+    }
+
     //MARK: - setups
 
     private func setup() {
         tabBar.backgroundColor = .white
 
-        routerPhotoCollection = generatePhotoCollectionRouter(navigationVC: navigationPhotoCollection, title: "wefwef", image: UIImage(systemName: "photo.on.rectangle.angled")!)
+        routerPhotoCollection = generatePhotoCollectionRouter(navigationVC: navigationPhotoCollection, title: "Photos", image: UIImage(systemName: "photo.on.rectangle.angled")!)
         routerPhotoCollection.initialPhotosCollectionViewController()
         routerFavoritePhotoCollection = generateFavoritePhotosRouter(navigationVC: navigationFavoritePhotoCollection, title: "Favorite", image: UIImage(systemName: "hand.thumbsup")!)
         routerFavoritePhotoCollection.initialFavoritePhotosViewController()
@@ -39,7 +43,6 @@ class MainTabBarController: UITabBarController {
 
     //MARK: - private methods
     private func generatePhotoCollectionRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> PhotosCollectionRouter {
-        let navigationVC = navigationVC
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
         let photosCollectionModuleAssembly = PhotosCollectionModuleAssembly()
@@ -49,7 +52,6 @@ class MainTabBarController: UITabBarController {
     }
 
     private func generateFavoritePhotosRouter(navigationVC: UINavigationController,title: String, image: UIImage) -> FavoritePhotosRouter {
-        let navigationVC = navigationVC
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
         let favoritePhotosModuleAssembly = FavoritePhotosModuleAssembly()

@@ -14,7 +14,8 @@ class DetailPhotoCollectionViewController: UIViewController {
     //MARK: - Properties
     var interactor: DetailPhotoCollectionBusinessLogic?
     var router: (NSObjectProtocol & DetailPhotoCollectionRoutingLogic)?
-    private var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
+//    private var photoViewModel = DetailsPhotoViewModel(name: "", date: "", location: "", download: "", created_at: "", photoUrlString: "")
+    private var photoViewModel = [DetailsPhotoViewModel]()
 
     //MARK: - UIElements
     private let spinner: UIActivityIndicatorView = {
@@ -120,6 +121,10 @@ class DetailPhotoCollectionViewController: UIViewController {
         setupConstraintsElements()
     }
 
+    deinit {
+        print("DetailPhotoCollectionViewController - no retain cycle")
+    }
+
     //MARK: - setup
     private func setup() {
         view.backgroundColor = UIColor.init(red: 0.784, green: 0.781, blue: 0.805, alpha: 1)
@@ -188,25 +193,13 @@ class DetailPhotoCollectionViewController: UIViewController {
 
     @objc func didClickAddButton() {
         let alertController = UIAlertController(title: "", message: "The photo will be added to the album", preferredStyle: .alert)
-        let add = UIAlertAction(title: "Add", style: .default) { [weak self] (action) in
-            guard let self = self else { return }
+        let add = UIAlertAction(title: "Add", style: .default) {
+            _ in
             let tabbar = self.tabBarController as! MainTabBarController
             let navVC = tabbar.viewControllers?[1] as! UINavigationController
             let favoriteVC = navVC.topViewController as! FavoritePhotosViewController
-
-            if favoriteVC.favoritePhotos.count == 0 {
-                favoriteVC.favoritePhotos.append(self.photoViewModel)
-            } else {
-                var isAppendPhoto = true
-                for photo in favoriteVC.favoritePhotos {
-                    if photo.photoUrlString.lowercased() == self.photoViewModel.photoUrlString.lowercased() {
-                        isAppendPhoto = false
-                    }
-                }
-                if isAppendPhoto {
-                    favoriteVC.favoritePhotos.append(self.photoViewModel)
-                }
-            }
+            self.interactor?.makeRequest(request: .addPhoto(favoritePhotos: favoriteVC.favoritePhotos))
+            favoriteVC.favoritePhotos = self.photoViewModel
             self.router?.popToRootPhotosCollection()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -225,12 +218,13 @@ extension DetailPhotoCollectionViewController: DetailPhotoCollectionDisplayLogic
         switch viewModel {
         case .displayDetailsPhoto(detailsPhotoViewModel: let detailsPhotoViewModel):
             spinner.stopAnimating()
-            photoViewModel = detailsPhotoViewModel
             nameLabeL.text = detailsPhotoViewModel.name
             dateLabeL.text = detailsPhotoViewModel.date
             locationLabeL.text = detailsPhotoViewModel.location
             downloadLabel.text = detailsPhotoViewModel.download
             photoImageView.set(imageUrl: detailsPhotoViewModel.photoUrlString)
+        case .displayAddedPhoto(detailsPhotoViewModel: let detailsPhotoViewModel):
+            photoViewModel = detailsPhotoViewModel
         }
     }
 }

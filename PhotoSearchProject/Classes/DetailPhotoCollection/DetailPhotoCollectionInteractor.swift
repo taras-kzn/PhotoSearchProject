@@ -25,10 +25,17 @@ class DetailPhotoCollectionInteractor: DetailPhotoCollectionBusinessLogic {
 
         case .getDetailsPhoto:
             guard let id = idPhoto else { return }
-            networkDataFetcher.getDetailImage(idPhoto: id) { [weak self]  photo in
-                guard let photo = photo, let self = self else { return }
-                self.presenter?.presentData(response: .presentDetailsPhoto(photo: photo))
+            networkDataFetcher.getDetailImage(idPhoto: id) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let photo):
+                    self.presenter?.presentData(response: .presentDetailsPhoto(photo: photo))
+                case .failure(let error):
+                    print(".failure(let error) -> \(error.errorDescription)")
+                }
             }
+        case .addPhoto(favoritePhotos: let favoritePhotos):
+            self.presenter?.presentData(response: .presentAddedPhoto(favoritePhotos: favoritePhotos))
         }
     }
 }
