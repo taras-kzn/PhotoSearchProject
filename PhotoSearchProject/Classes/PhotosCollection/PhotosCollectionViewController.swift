@@ -42,7 +42,6 @@ class PhotosCollectionViewController: UIViewController {
         super.viewDidAppear(animated)
 
       //  getPhotoRandom()
-        //PhotosCollectionViewController_developer
     }
 
     //MARK: - Setup
