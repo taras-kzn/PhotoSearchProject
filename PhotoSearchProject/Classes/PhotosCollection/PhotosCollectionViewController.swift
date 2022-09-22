@@ -48,10 +48,6 @@ class PhotosCollectionViewController: UIViewController {
     deinit {
         print("PhotosCollectionViewController - no retain cycle")
     }
-    
-    deinit {
-        print("PhotosCollectionViewController - no retain cycle")
-    }
 
     //MARK: - Setup
     private func setup() {
