@@ -42,6 +42,7 @@ class PhotosCollectionViewController: UIViewController {
         super.viewDidAppear(animated)
 
       //  getPhotoRandom()
+        //Test
     }
 
     //MARK: - Setup
