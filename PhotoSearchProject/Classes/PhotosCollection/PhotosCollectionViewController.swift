@@ -48,13 +48,6 @@ class PhotosCollectionViewController: UIViewController {
     private func setup() {
         navigationItem.title = "Photos"
     }
-    //Developer
-    //Developer
-    //Developer
-    //Developer //Developer
-    //Developer
-    //Developer
-    //Developer 
 
     //MARK: - setup CollectionView
     private func setupCollectionView() {
